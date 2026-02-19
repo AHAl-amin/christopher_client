@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lusitana:wght@400;700&display=swap');
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+
+
+#root {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Custom Font Class */
+.lusitana {
+  font-family: "Lusitana", serif;
+}
+
+.buton{
+  background-color: #1A9C9C;
+  color: #FFFFFF;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+
+
+}
+
+.h1{
+  font-size: 20px;
+  font-weight: medium;
+  color: #F68528;
+}

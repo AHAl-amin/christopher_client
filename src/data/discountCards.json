@@ -1,0 +1,21 @@
+{
+  "discountCards": [
+    {
+      "id": 1,
+      "name": "Brownie Sundae",
+      "discount": "30% Off",
+      "price": "$56",
+      "image": "https://res.cloudinary.com/dcpbtzues/image/upload/v1771407083/indulgent-brownie-sundae-topped-with-whipped-cream_1_fxkeml.png",
+      "category": "Dessert"
+    },
+    {
+      "id": 2,
+      "name": "Apple Cider",
+      "discount": "25% Off",
+      "price": "$45",
+      "image": "https://res.cloudinary.com/dcpbtzues/image/upload/v1771407083/delicious-caramel-popcorn-milkshake-creamy-indulgence_1_e2hvev.png",
+      "category": "Drink"
+    }
+
+  ]
+}
