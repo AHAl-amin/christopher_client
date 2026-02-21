@@ -11,6 +11,13 @@ import Admin_Home from "../Layout/Admin/Admin_Home";
 import AboutPages from "../Pages/AboutPages/AboutPages";
 import Menu from "../Pages/Menu/Menu";
 import MenuDettails from "../Pages/Menu/MenuDettails";
+import Cart from "../Pages/Cart/Cart";
+import PaymentProcess from "../Pages/PaymentProcess/PaymentProcess";
+import BucketList from "../Pages/BucketList/BucketList";
+import GiftCard from "../Pages/GiftCard/GiftCard";
+import QRCode from "../Pages/QRCode/QRCode";
+import OrderHistory from "../Pages/OrderHistory/OrderHistory";
+
 
 
 export const router = createBrowserRouter([
@@ -22,6 +29,13 @@ export const router = createBrowserRouter([
       { path: '/about', element: <AboutPages /> },
       { path: '/menu', element: <Menu /> },
       { path: '/menu/:id', element: <MenuDettails /> },
+      { path: '/cart', element: <Cart /> },
+      { path: '/payment_process', element: <PaymentProcess /> },
+      { path: '/bucket', element: <BucketList /> },
+      { path: '/gift_card', element: <GiftCard /> },
+      { path: '/qr_code', element: <QRCode /> },
+      { path: '/order_history', element: <OrderHistory /> },
+   
 
 
 

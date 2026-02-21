@@ -1,10 +1,10 @@
 import { CgProfile } from 'react-icons/cg';
 import { FaFacebook, FaInstagram, FaLinkedin, FaPhone, FaRegHeart } from 'react-icons/fa';
 import { FaLocationDot, FaPersonRifle, FaX, FaXTwitter } from 'react-icons/fa6';
-import { FiFacebook, FiUsers } from 'react-icons/fi';
+import { FiFacebook, FiUsers, FiLink, FiMail, FiCopy, FiShoppingCart } from 'react-icons/fi';
 import { IoIosHeartEmpty } from 'react-icons/io';
 import { IoChevronForwardOutline, IoReorderThreeSharp } from 'react-icons/io5';
-import { MdPhone } from 'react-icons/md';
+import { MdPhone, MdOutlineChatBubbleOutline } from 'react-icons/md';
 import { SlSocialLinkedin } from 'react-icons/sl';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -14,26 +14,28 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showStartGroupOrderModal, setShowStartGroupOrderModal] = useState(false);
+  const [showGroupOrderReadyModal, setShowGroupOrderReadyModal] = useState(false);
+  const [isGroupOrderActive, setIsGroupOrderActive] = useState(false);
   const activeClass = 'text-blue-600 border-b-2 border-blue-600';
 
   return (
     <nav className=" sticky top-0 z-50 ">
       {/* Sidebar Overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/40 bg-opacity-50 z-40"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
 
       {/* Sidebar */}
-      <div className={`fixed top-30 left-0 lg:w-[600px] w-full rounded-b  bg-white z-40 transform transition-transform duration-300 ${
-        sidebarOpen ? 'md:translate-x-10 translate-0' : '-translate-x-full'
-      }`}>
+      <div className={`fixed top-30 left-0 lg:w-[600px] w-full rounded-b  bg-white z-40 transform transition-transform duration-300 ${sidebarOpen ? 'md:translate-x-10 translate-0' : '-translate-x-full'
+        }`}>
         <div className="p-6">
           {/* Close Button */}
           <div className="flex justify-end ">
-            <button 
+            <button
               onClick={() => setSidebarOpen(false)}
               className="text-gray-600 hover:text-gray-900 cursor-pointer"
             >
@@ -42,7 +44,7 @@ const Navbar = () => {
           </div>
 
           {/* Profile Section */}
-           <p className='text-2xl lusitana'>Jone’s <span className='text-[#F68528]'>Sheks</span> </p>
+          <p className='text-2xl lusitana'>Jone’s <span className='text-[#F68528]'>Sheks</span> </p>
           <div className="flex items-center gap-4 mt-8 mb-2">
             <CgProfile className="size-24 text-gray-500" />
             <div>
@@ -56,10 +58,10 @@ const Navbar = () => {
               { label: 'Home', path: '/' },
               { label: 'About Us', path: '/about' },
               { label: 'Menu', path: '/menu' },
-              { label: 'Bucket List', path: '/bucket-list' },
-              { label: 'Gift Card', path: '/gift-card' },
-              { label: 'My QR Code', path: '/qr-code' },
-              { label: 'Order History', path: '/order-history' },
+              { label: 'Bucket List', path: '/bucket' },
+              { label: 'Gift Card', path: '/gift_card' },
+              { label: 'My QR Code', path: '/qr_code' },
+              { label: 'Order History', path: '/order_history' },
               { label: 'My Rating', path: '/my-rating' },
               { label: 'Settings', path: '/settings' }
             ].map((item, idx) => (
@@ -78,7 +80,7 @@ const Navbar = () => {
           </div>
 
           {/* Log Out Button */}
-          <button 
+          <button
             onClick={() => {
               // Add logout logic here
               setSidebarOpen(false);
@@ -118,7 +120,7 @@ const Navbar = () => {
       <div className='bg-[#FFFFFF]'>
         <div className="container mx-auto flex justify-between items-center  py-3 px-6 md:px-0">
           <div className="flex items-center space-x-4 ">
-            <button 
+            <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="hover:text-gray-600 transition"
             >
@@ -130,7 +132,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-6 ">
             <Link
               to="/"
-              className='relative bg-[#EAEAEA] p-[14px] rounded-xl'
+              className='relative bg-[#EAEAEA] hover:bg-[#eaeaeab6] p-[14px] rounded-xl'
             >
               <span className='w-[14px] h-[14px] bg-[#E4002A] text-[#ffff] absolute text-[10px] rounded-full flex items-center justify-center right-3 top-2'>1</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className='' xmlns="http://www.w3.org/2000/svg">
@@ -139,14 +141,17 @@ const Navbar = () => {
 
             </Link>
             <button
-              className='relative bg-[#EAEAEA] p-3 rounded-xl'
+              className='relative bg-[#EAEAEA] hover:bg-[#eaeaeab6] p-3 rounded-xl cursor-pointer '
             >
               <span className='w-[14px] h-[14px] bg-[#E4002A] text-[#ffff] absolute text-[10px] top-2 rounded-full'>1</span>
               <IoIosHeartEmpty className='size-6' />
 
             </button>
             <div className="">
-              <button className=" buton flex items-center gap-2">
+              <button
+                onClick={() => setShowStartGroupOrderModal(true)}
+                className=" buton flex items-center gap-2 cursor-pointer"
+              >
                 Start Group Order<FiUsers />
               </button>
             </div>
@@ -157,6 +162,174 @@ const Navbar = () => {
 
         </div>
       </div>
+
+      {/* Extra Group Order Active Banner */}
+      {isGroupOrderActive && (
+        <div className="bg-gradient-to-r from-[#1A9C9C] to-[#093636] w-full py-3">
+          <div className="container mx-auto flex items-center justify-between px-6 md:px-0">
+            <div className="flex items-center gap-4 text-white">
+              <div className="flex items-center gap-2">
+                <FiUsers size={20} />
+                <span className="font-medium text-[15px]">You're adding to a group order</span>
+              </div>
+              <div className="w-[1px] h-5 bg-[#ffffff]/30"></div>
+              <div className="flex items-center gap-2">
+                <span className="text-[14px]">
+                  <span className="inline-block w-1 h-1 bg-white rounded-full mr-1.5 align-middle"></span>
+                  3 Participants
+                </span>
+              </div>
+            </div>
+
+            <button className="bg-[#E9E9E921] hover:bg-[#E9E9E921]/50 transition-colors text-white px-5 py-2 rounded-md flex items-center gap-2 text-[14px] font-medium cursor-pointer
+           
+            "
+            onClick={() => {
+              navigate("/cart")
+              setShowStartGroupOrderModal(false)
+            }}
+            >
+              View Cart <FiShoppingCart size={16} />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Start Group Order Modal */}
+      {showStartGroupOrderModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#00000080] p-4">
+          <div className="bg-[#F9FAFB] rounded-[12px] w-full max-w-[600px] p-8 relative flex flex-col">
+            <button
+              onClick={() => setShowStartGroupOrderModal(false)}
+              className="absolute top-6 right-6 p-2 bg-white shadow-sm border border-gray-100 rounded-md text-black hover:bg-gray-50 cursor-pointer"
+            >
+              <FaX size={16} />
+            </button>
+
+            <h3 className="lusitana text-[28px] text-[#314158] mb-6">Start Group Order</h3>
+
+            <div className="border-b border-dashed border-gray-300 w-full mb-6"></div>
+
+            <div className="flex flex-col gap-6 w-full">
+              <div className="flex flex-col gap-2">
+                <label className="text-[#314158] font-semibold text-[15px]">Group Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter your group name"
+                  className="w-full border border-gray-200 rounded-md p-3 text-[14px] focus:outline-none focus:border-[#1A9C9C] bg-white placeholder:text-gray-400"
+                />
+              </div>
+
+              <div className="flex flex-row items-center gap-8">
+                <div className="flex flex-col gap-3">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#1A9C9C] rounded cursor-pointer" />
+                    <span className="text-[#62748E] font-medium text-[15px]">Limit Order Amount Per Party</span>
+                  </label>
+                  <div className="flex items-center border border-gray-200 rounded-md overflow-hidden max-w-[150px] bg-white">
+                    <span className="bg-[#FFF4ED] text-[#F68528] px-4 py-2 font-medium border-r border-gray-200">$</span>
+                    <input type="text" defaultValue="20" className="w-full p-2 focus:outline-none font-semibold text-center text-[#221E1F]" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-3 justify-start h-full pb-9">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#1A9C9C] rounded cursor-pointer" />
+                    <span className="text-[#62748E] font-medium text-[15px]">Separately Paying Ammount</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-3 mt-4">
+                <button
+                  onClick={() => setShowStartGroupOrderModal(false)}
+                  className="bg-[#E5E7EB] text-[#4B5563] px-6 py-2.5 rounded-md font-medium hover:bg-gray-300 transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    setShowStartGroupOrderModal(false);
+                    setShowGroupOrderReadyModal(true);
+                  }}
+                  className="bg-[#1A9C9C] text-white px-6 py-2.5 rounded-md font-medium hover:bg-teal-700 transition-colors cursor-pointer"
+                >
+                  Create Group Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Group Order Ready Modal */}
+      {showGroupOrderReadyModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#00000080] p-4">
+          <div className="bg-[#F9FAFB] rounded-[12px] w-full max-w-[650px] p-8 relative flex flex-col">
+            <button
+              onClick={() => setShowGroupOrderReadyModal(false)}
+              className="absolute top-6 right-6 p-2 bg-white shadow-sm border border-gray-100 rounded-md text-black hover:bg-gray-50 cursor-pointer"
+            >
+              <FaX size={16} />
+            </button>
+
+            <h3 className="lusitana text-[28px] text-[#314158] mb-6">Your Group Order is ready to share</h3>
+
+            <div className="border-b border-dashed border-gray-300 w-full mb-6"></div>
+
+            <div className="flex flex-col gap-6 w-full">
+              <p className="text-[#62748E] text-[15px]">Share the link or use the "Share via Email/SMS" option below</p>
+
+              <div className="flex items-center gap-4">
+                <button className="bg-[#A2C9F5] text-[#1E3A8A] flex items-center gap-2 px-6 py-2.5 rounded-md font-medium hover:bg-blue-400 transition-colors cursor-pointer text-[12px]">
+                  Copy Link <FiLink size={16} />
+                </button>
+                <span className="text-[#221E1F] font-bold text-[14px]">Or</span>
+                <button className="bg-[#E6934F] text-white flex items-center gap-2 px-6 py-2.5 rounded-md font-medium hover:bg-orange-500 transition-colors cursor-pointer text-[12px]">
+                  Share via Email <FiMail size={16} />
+                </button>
+                <span className="text-[#221E1F] font-bold text-[14px]">Or</span>
+                <button className="bg-[#1F9B36] text-white flex items-center gap-2 px-6 py-2.5 rounded-md font-medium hover:bg-green-600 transition-colors cursor-pointer text-[12px]">
+                  Share via SMS <MdOutlineChatBubbleOutline size={16} />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-2 mt-2">
+                <label className="text-[#314158] font-semibold text-[15px]">Group Link</label>
+                <div className="flex items-center w-full border border-gray-200 rounded-md bg-white overflow-hidden">
+                  <input
+                    type="text"
+                    readOnly
+                    value="https://order.jonesshakes.com/p/g/Te6ksDTdah"
+                    className="w-full p-3 text-[14px] text-[#A0ABC0] focus:outline-none bg-white"
+                  />
+                  <button className="bg-[#CCF0E7] p-3.5 text-[#1A9C9C] hover:bg-[#B3E1D7] transition-colors cursor-pointer flex-shrink-0">
+                    <FiCopy size={20} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-3 mt-4">
+                <button
+                  onClick={() => setShowGroupOrderReadyModal(false)}
+                  className="bg-[#E5E7EB] text-[#4B5563] px-8 py-2.5 rounded-md font-medium hover:bg-gray-300 transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    setShowGroupOrderReadyModal(false);
+                    setIsGroupOrderActive(true);
+                  }}
+                  className="bg-[#1A9C9C] text-white px-8 py-2.5 rounded-md font-medium hover:bg-teal-700 transition-colors cursor-pointer"
+                >
+                  Enter My Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
