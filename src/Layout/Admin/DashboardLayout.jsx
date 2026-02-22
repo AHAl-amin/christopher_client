@@ -3,32 +3,42 @@
 
 import { useState, useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { LuLayoutDashboard } from "react-icons/lu";
-import { FaUserGroup } from "react-icons/fa6";
-import { BadgePercent, Bell, CalendarDays, ChevronDown, ChevronsLeft, ChevronsRight, MessagesSquare } from "lucide-react";
-import { RiUserSettingsLine } from "react-icons/ri";
-import { BsFillBarChartFill } from "react-icons/bs";
+
+import { ChevronDown } from "lucide-react";
+
+import { FaHome, FaRegFileAlt, FaUserFriends } from "react-icons/fa";
+import { GrHomeRounded } from "react-icons/gr";
+import { CiShop } from "react-icons/ci";
+import { FiSettings, FiUsers, FiChevronDown } from "react-icons/fi";
 
 export default function DashboardLayout() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Dashboard");
-  const location = useLocation(); 
-  const navigate = useNavigate(); 
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
   const menuItems = [
     {
       items: [
-        { name: "Dashboard", icon: <LuLayoutDashboard size={20} />, path: "/home" },
-        { name: "Users & Therapists", icon: <FaUserGroup size={20} />, path: "/client_info" },
-        { name: "Bookings & Payments", icon: <CalendarDays size={20} />, path: "/booking_info" },
-        { name: "Roles & Permissions", icon: <RiUserSettingsLine size={20} />, path: "/roles" },
-        { name: "Analytics", icon: <BsFillBarChartFill size={20} />, path: "/analytics" },
-        { name: "Promotions", icon: <BadgePercent size={20} />, path: "/promotions" },
-        { name: "Dispute Management", icon: <MessagesSquare size={20} />, path: "/dispute_management"},
+        { name: "GENERAL" },
+        { name: "Dashboard", icon: <GrHomeRounded size={20} />, path: "/dashboard" },
+        {
+          name: "Orders",
+          icon: <FaRegFileAlt size={20} />,
+          path: "/dashboard/orders",
+          children: [
+            { name: "Group Orders", path: "/dashboard/orders/group_orders", icon: <FaUserFriends size={18} /> },
+          ],
+        },
+        { name: "Product ", icon: <CiShop size={22} />, path: "/booking_info" },
+        { name: "Customers", icon: <FiUsers size={20} />, path: "/roles" },
+        { name: "TOOLS" },
+        { name: "Account & Settings", icon: <FiSettings size={20} />, path: "/promotions" },
+
       ],
     },
   ];
 
-  // Sync selectedItem with current route on initial load
+  
   useEffect(() => {
     const currentItem = menuItems[0].items.find(
       (item) => item.path === location.pathname
@@ -47,20 +57,16 @@ export default function DashboardLayout() {
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
       <aside
-        className={`${
-          isCollapsed ? "w-20" : "w-64"
-        } bg-white border-r border-gray-200 transition-all duration-500 ease-in-out`}
+        className={`w-68 bg-white border-r border-gray-200 transition-all duration-500 ease-in-out`}
       >
         {/* Logo */}
-        <div className="h-16 flex items-center px-4">
-          <div className="flex items-center ms-1 gap-2 mt-20">
-            <div
-              className={`transform transition-all duration-500 ${
-                isCollapsed ? "opacity-0 -translate-x-full" : "opacity-100 translate-x-0"
-              }`}
-            >
-              <img src="https://i.ibb.co.com/6JmxrwwH/Group-1686551099-1.png" alt="Logo" />
-            </div>
+        <div className="h-16  flex items-center px-4 ">
+          <div className="flex items-center justify-center w-full ms-1 gap-2 mt-20 ">
+
+            <Link to="/">
+              <p className='text-3xl lusitana'>Jone’s <span className='text-[#F68528]'>Sheks</span> </p>
+            </Link>
+
           </div>
         </div>
 
@@ -68,38 +74,98 @@ export default function DashboardLayout() {
         <nav className="p-4 md:mt-20">
           {menuItems.map((section, idx) => (
             <div key={idx} className="mb-8">
-              <ul className="space-y-2">
-                {section.items.map((item, itemIdx) => (
-                  <li key={itemIdx}>
-                    <Link
-                      to={item.path}
-                      onClick={() => handleItemClick(item.name, item.path)}
-                      className={`flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-gray-100 group relative ${
-                        selectedItem === item.name ? "bg-gray-200 text-gray-900 font-semibold" : ""
-                      }`}
-                    >
-                      <span
-                        className={`group-hover:text-gray-700 transition-colors duration-300 ${
-                          selectedItem === item.name ? "text-gray-900" : "text-gray-500"
-                        }`}
+              <ul className="space-y-1">
+                {section.items.map((item, itemIdx) => {
+                  // Section label (no path, no icon)
+                  if (!item.path && !item.children) {
+                    return (
+                      <li key={itemIdx} className="px-3 pt-3 pb-1">
+                        <span className=" font-medium text-gray-400 tracking-widest uppercase">{item.name}</span>
+                      </li>
+                    );
+                  }
+
+                  // Dropdown item
+                  if (item.children) {
+                    const isOpen = openDropdown === item.name;
+                    return (
+                      <li key={itemIdx}>
+                        <div
+                          className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors cursor-pointer ${item.children.some(c => selectedItem === c.name) || selectedItem === item.name
+                              ? 'bg-[#E8F7F7] text-[#1A9C9C] font-medium'
+                              : 'text-gray-700 hover:bg-[#1A9C9C]/20'
+                            }`}
+                        >
+                          {/* Icon + label navigate to parent path */}
+                          <Link
+                            to={item.path || '#'}
+                            onClick={() => item.path && handleItemClick(item.name, item.path)}
+                            className="flex items-center gap-3 flex-1"
+                          >
+                            <span className={`transition-colors duration-300 ${item.children.some(c => selectedItem === c.name) || selectedItem === item.name
+                                ? 'text-[#1A9C9C]' : 'text-gray-500'
+                              }`}>{item.icon}</span>
+                            <span className="flex-1 whitespace-nowrap">{item.name}</span>
+                          </Link>
+                          {/* Chevron toggles dropdown */}
+                          <button
+                            onClick={() => setOpenDropdown(isOpen ? null : item.name)}
+                            className="p-1 cursor-pointer"
+                          >
+                            <FiChevronDown
+                              size={14}
+                              className={`transition-transform duration-300 text-gray-400 ${isOpen ? 'rotate-180' : ''
+                                }`}
+                            />
+                          </button>
+                        </div>
+
+                        {/* Sub-items */}
+                        {isOpen && (
+                          <ul className="mt-1 ml-4 space-y-1 border-l-2 border-[#E9F7F7] pl-4">
+                            {item.children.map((child, ci) => (
+                              <li key={ci}>
+                                <Link
+                                  to={child.path}
+                                  onClick={() => handleItemClick(child.name, child.path)}
+                                  className={`flex items-center gap-2 text-[13px] px-2 py-2 rounded-md transition-colors ${selectedItem === child.name
+                                      ? 'bg-[#1A9C9C] text-white font-medium'
+                                      : 'text-gray-600 hover:bg-[#1A9C9C]/20 hover:text-[#1A9C9C]'
+                                    }`}
+                                >
+                                  {child.icon && (
+                                    <span className={selectedItem === child.name ? 'text-white' : 'text-gray-400'}>
+                                      {child.icon}
+                                    </span>
+                                  )}
+                                  {child.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  }
+
+                  // Regular nav item
+                  return (
+                    <li key={itemIdx}>
+                      <Link
+                        to={item.path}
+                        onClick={() => handleItemClick(item.name, item.path)}
+                        className={`flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-[#1A9C9C]/20 transition-colors ${selectedItem === item.name ? "bg-[#1A9C9C] text-white font-medium" : ""
+                          }`}
                       >
-                        {item.icon}
-                      </span>
-                      <span
-                        className={`transform transition-all duration-500 ${
-                          isCollapsed ? "opacity-0 -translate-x-full" : "opacity-100 translate-x-0"
-                        } whitespace-nowrap`}
-                      >
-                        {item.name}
-                      </span>
-                      {item.badge && !isCollapsed && (
-                        <span className="ml-auto bg-red-500 text-white text-xs font-semibold rounded-full px-2 py-0.5">
-                          {item.badge}
+                        <span className={`transition-colors duration-300 ${selectedItem === item.name ? "text-white" : "text-gray-500"
+                          }`}>
+                          {item.icon}
                         </span>
-                      )}
-                    </Link>
-                  </li>
-                ))}
+                        <span className="whitespace-nowrap">{item.name}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -108,26 +174,17 @@ export default function DashboardLayout() {
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Navbar */}
-        <header className="h-16 bg-white border-b border-gray-200">
+        <header className="h-22 bg-white border-b border-gray-200">
           <div className="h-full px-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <button
-                onClick={() => setIsCollapsed(!isCollapsed)}
-                className="p-2 hover:bg-gray-200 rounded-full transition-colors duration-300"
-              >
-                {isCollapsed ? <ChevronsRight size={20} /> : <ChevronsLeft size={20} />}
-              </button>
-              <div className="flex flex-col">
-                <span className="text-gray-700 font-bold text-xl">{selectedItem}</span>
-                <h1>
-                  Hi, Welcome <span className="text-[#B28D28] font-bold">Admin</span>
-                </h1>
+
+              <div className="flex flex-col min-w-3xl">
+
+                <input type="text" placeholder="Search" className="input input-bordered focus:border-[#1A9C9C] focus-within:border-2 focus:outline-none  rounded-md " />
               </div>
             </div>
             <div className="flex items-center gap-4 me-10">
-              <button className="p-2 bg-[#FAE08C1A] hover:bg-[#f8de91] border-2 border-[#B28D2833] rounded-full transition-colors duration-300">
-                <Bell size={24} className="text-[#B28D28]" />
-              </button>
+
               <div className="flex items-center justify-center gap-2">
                 <div className="w-12">
                   <img

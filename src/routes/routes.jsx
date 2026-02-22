@@ -22,6 +22,8 @@ import Rating from "../Pages/Rating/Rating";
 import CompleteOrder from "../Pages/PaymentProcess/CompleteOrder/CompleteOrder";
 import ChooseDeliveryMethod from "../Pages/PaymentProcess/ChooseDeliveryMethod/ChooseDeliveryMethod";
 import PickupDetails from "../Pages/PaymentProcess/PickupDetails/PickupDetails";
+import Orders from "../Layout/Admin/Orders";
+import GroupOrders from "../Layout/Admin/GroupOrders";
 
 
 
@@ -57,7 +59,9 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       { index: true, element: <Admin_Home /> },
-      { path: 'admin_home', element: <Admin_Home /> }
+      { path: 'admin_home', element: <Admin_Home /> },
+      { path: '/dashboard/orders', element: <Orders /> },
+      { path: '/dashboard/orders/group_orders', element: <GroupOrders /> },
     ]
   },
 
