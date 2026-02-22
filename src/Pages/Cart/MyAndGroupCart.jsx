@@ -266,7 +266,7 @@ function MyAndGroupCart() {
                   Add More Items <FiShoppingBag size={15} />
                 </button>
                 <button className="flex-1 bg-[#1A9C9C] text-white h-[46px] rounded-md font-medium flex items-center justify-center gap-2 hover:bg-teal-700 transition-colors text-[13px] cursor-pointer"
-                onClick={() => navigate('/payment_process')}
+                onClick={() => navigate('/choose_delivery_method')}
                 >
                   Proceed to Checkout <CiMoneyCheck1 size={20} />
                 </button>
