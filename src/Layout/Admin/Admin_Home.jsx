@@ -62,7 +62,7 @@ const Admin_Home = () => {
 
   return (
     <div className="p-6 bg-[#F8FAFC] min-h-screen">
-      <h1 className="lusitana text-[30px] font-semibold text-[#221E1F] mb-6">Dashboard</h1>
+      <h1 className="luxury text-[30px] font-semibold text-[#221E1F] mb-6">Dashboard</h1>
 
       {/* ── Row 1 ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">

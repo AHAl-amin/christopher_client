@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FiSearch, FiFilter, FiDownload, FiEye, FiTrash2, FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import productImage from '../../../public/img/Products/product1.png';
 
@@ -61,23 +61,25 @@ const OrderDetailModal = ({ order, onClose }) => {
     if (!order) return null;
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
-            <div className="bg-white rounded-2xl w-full max-w-3xl shadow-2xl overflow-hidden">
+            <div className="bg-white rounded-2xl w-full max-w-3xl shadow-2xl  overflow-y-auto no-scrollbar max-h-[90vh] ">
                 {/* Header */}
-                <div className="p-5 border-b border-[#F0F0F0] flex items-start justify-between">
-                    <div className="flex items-center gap-6 border">
-                        <div className='w-[100px] border'>
-                            <img src={order.productImage} alt={order.product} className="w-full h-full object-cover rounded-xl" />
+                <div className='p-6 relative'>
+                    <div className="border-b pb-5 border-[#C0C0C0] border-dashed flex items-center justify-between ">
+                        <div className="flex items-center gap-6 ">
+                            <div className='w-[50px] '>
+                                <img src={order.productImage} alt={order.product} className="w-full h-full object-cover rounded-xl" />
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-bold text-[#221E1F] lusitana">{order.product}</h3>
+                                <p className="text-lg text-[#9CA3AF]">Quantity : {order.quantity}</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="text-2xl font-bold text-[#221E1F] lusitana">{order.product}</h3>
-                            <p className="text-lg text-[#9CA3AF]">Quantity : {order.quantity}</p>
+                        <div className="flex items-center gap-3  ">
+                            <span className="text-[#EB2D50] font-bold text-2xl lusitana">${order.finalAmount.toFixed(2)}</span>
+                            <button onClick={onClose} className="text-gray-400 hover:text-gray-600 cursor-pointer absolute top-2 right-2">
+                                <FiX size={20} />
+                            </button>
                         </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <span className="text-[#E97034] font-bold text-[18px]">${order.finalAmount.toFixed(2)}</span>
-                        <button onClick={onClose} className="text-gray-400 hover:text-gray-600 cursor-pointer">
-                            <FiX size={20} />
-                        </button>
                     </div>
                 </div>
 
@@ -85,7 +87,7 @@ const OrderDetailModal = ({ order, onClose }) => {
                     {/* Add-ons Table */}
                     <div>
                         <h4 className="text-[14px] font-bold text-[#221E1F] mb-3">Add - ons</h4>
-                        <div className="grid grid-cols-4 text-[12px] text-[#9CA3AF] font-medium mb-2 px-1">
+                        <div className="grid grid-cols-4 text-[12px] text-[#555555] font-medium mb-2 px-1">
                             <span>Items</span>
                             <span>Quantity</span>
                             <span>Price</span>
@@ -93,7 +95,7 @@ const OrderDetailModal = ({ order, onClose }) => {
                         </div>
                         <div className="space-y-2">
                             {order.addOns.map((addon, i) => (
-                                <div key={i} className="grid grid-cols-4 text-[13px] text-[#334155] border-b border-dashed border-[#F0F0F0] pb-2">
+                                <div key={i} className="grid grid-cols-4 text-[13px] text-[#62748E] border-t border-dashed border-[#C0C0C0] pt-3">
                                     <span>{addon.item}</span>
                                     <span>{addon.qty}</span>
                                     <span>{addon.price.toFixed(2)}</span>
@@ -104,7 +106,7 @@ const OrderDetailModal = ({ order, onClose }) => {
                     </div>
 
                     {/* Payment Summary */}
-                    <div className="bg-[#F8FAFC] rounded-xl p-4 space-y-2">
+                    <div className="bg-[#F8FAFC] rounded-xl p-4 space-y-2 border border-[#D6E3F0]">
                         <h4 className="text-[13px] font-bold text-[#221E1F] mb-3">Payment Summary</h4>
                         <div className="flex justify-between text-[13px] text-[#62748E]">
                             <span>Subtotal</span>
@@ -114,7 +116,7 @@ const OrderDetailModal = ({ order, onClose }) => {
                             <span>Add-ons Total</span>
                             <span>${order.addOnsTotal.toFixed(2)}</span>
                         </div>
-                        <div className="flex justify-between text-[14px] font-bold text-[#1A9C9C] pt-2 border-t border-[#E9EEF2]">
+                        <div className="flex justify-between text-[14px] font-bold text-[#11A231] pt-2 border-t border-[#E9EEF2]">
                             <span>Final Amount</span>
                             <span>${order.finalAmount.toFixed(2)}</span>
                         </div>
@@ -123,12 +125,12 @@ const OrderDetailModal = ({ order, onClose }) => {
                     {/* Date & Address */}
                     <div className="space-y-3">
                         <div>
-                            <p className="text-[12px] font-semibold text-[#334155] mb-1">Date & Time</p>
-                            <p className="text-[13px] text-[#62748E]">{order.datetime}</p>
+                            <p className="text-[12px] font-semibold mb-1 text-[#62748E]">Date & Time</p>
+                            <p className="text-[13px]  text-[#334155] ">{order.datetime}</p>
                         </div>
                         <div>
-                            <p className="text-[12px] font-semibold text-[#334155] mb-1">Delivery Address</p>
-                            <p className="text-[13px] text-[#62748E]">{order.address}</p>
+                            <p className="text-[12px] font-semibold text-[#62748E] mb-1">Delivery Address</p>
+                            <p className="text-[13px]  text-[#334155] ">{order.address}</p>
                         </div>
                     </div>
                 </div>
@@ -144,14 +146,55 @@ export default function Orders() {
     const [selected, setSelected] = useState([]);
     const [page, setPage] = useState(1);
     const [detailOrder, setDetailOrder] = useState(null);
+    const [filterOpen, setFilterOpen] = useState(false);
+    const [activeFilters, setActiveFilters] = useState([]);
+    const filterRef = useRef(null);
 
-    // Filter by search
-    const filtered = orders.filter(o =>
-        o.orderId.toLowerCase().includes(search.toLowerCase()) ||
-        o.name.toLowerCase().includes(search.toLowerCase()) ||
-        o.customer.toLowerCase().includes(search.toLowerCase()) ||
-        o.email.toLowerCase().includes(search.toLowerCase())
+    const FILTER_OPTIONS = [
+        { label: 'Paid', field: 'payment', value: 'Paid' },
+        { label: 'Unpaid', field: 'payment', value: 'Unpaid' },
+        { label: 'Completed', field: 'status', value: 'Completed' },
+        { label: 'Cancelled', field: 'status', value: 'Cancelled' },
+    ];
+
+    // Close dropdown on outside click
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (filterRef.current && !filterRef.current.contains(e.target)) {
+                setFilterOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+   const toggleFilter = (value) => {
+    setActiveFilters(prev =>
+        prev.includes(value) ? prev.filter(f => f !== value) : [...prev, value]
     );
+    setPage(1);
+    setFilterOpen(false);
+};
+
+    const clearFilters = () => { setActiveFilters([]); setPage(1); };
+
+    // Filter by search + active filters
+    const filtered = orders.filter(o => {
+        const matchSearch =
+            o.orderId.toLowerCase().includes(search.toLowerCase()) ||
+            o.name.toLowerCase().includes(search.toLowerCase()) ||
+            o.customer.toLowerCase().includes(search.toLowerCase()) ||
+            o.email.toLowerCase().includes(search.toLowerCase());
+
+        const matchFilter =
+            activeFilters.length === 0 ||
+            activeFilters.some(f => {
+                const opt = FILTER_OPTIONS.find(o => o.value === f);
+                return opt && o[opt.field] === opt.value;
+            });
+
+        return matchSearch && matchFilter;
+    });
 
     const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
     const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
@@ -174,7 +217,7 @@ export default function Orders() {
         <div className="bg-[#F3F3F3]">
             {/* Title */}
             <div className="mb-6">
-                <h1 className="lusitana text-[36px] font-semibold text-[#221E1F]">Order</h1>
+                <h1 className="luxury text-[36px] font-semibold text-[#221E1F]">Order</h1>
                 <p className="text-[#9CA3AF] text-[14px]">Manage and track all customer orders</p>
             </div>
 
@@ -192,10 +235,76 @@ export default function Orders() {
                     />
                 </div>
                 <div className="flex items-center gap-3">
-                    <button className="flex items-center gap-2 border border-[#B0B0B0]   text-[#334155] text-[13px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
-                        <FiFilter size={15} /> Filter
-                    </button>
-                    <button className="flex items-center gap-2 border border-[#B0B0B0]   text-[#334155] text-[13px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    {/* Filter Button + Dropdown */}
+                    <div className="relative" ref={filterRef}>
+                        <button
+                            onClick={() => setFilterOpen(prev => !prev)}
+                            className={`flex items-center gap-2 border text-[13px] font-medium px-4 py-2.5 rounded-lg cursor-pointer transition-colors ${activeFilters.length > 0
+                                    ? 'border-[#1A9C9C] bg-[#F0FAFA] text-[#1A9C9C]'
+                                    : 'border-[#B0B0B0] text-[#334155] hover:bg-gray-50'
+                                }`}
+                        >
+                            <FiFilter size={15} />
+                            Filter
+                            {activeFilters.length > 0 && (
+                                <span className="ml-1 bg-[#1A9C9C] text-white text-[11px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                                    {activeFilters.length}
+                                </span>
+                            )}
+                        </button>
+
+                        {filterOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-[#E8E8E8] rounded-xl shadow-lg z-30 overflow-hidden">
+                                <div className="px-3 py-2.5 border-b border-[#F0F0F0] flex items-center justify-between">
+                                    <span className="text-[12px] font-semibold text-[#334155]">Filter by</span>
+                                    {activeFilters.length > 0 && (
+                                        <button
+                                            onClick={clearFilters}
+                                            className="text-[11px] text-[#1A9C9C] hover:underline cursor-pointer"
+                                        >
+                                            Clear all
+                                        </button>
+                                    )}
+                                </div>
+
+                                {/* Payment group */}
+                                <div className="px-3 pt-2.5 pb-1">
+                                    <p className="text-[10px] font-semibold uppercase tracking-wide text-[#9CA3AF] mb-1.5">Payment</p>
+                                    {FILTER_OPTIONS.filter(o => o.field === 'payment').map(opt => (
+                                        <label key={opt.value} className="flex items-center gap-2.5 py-1.5 cursor-pointer group">
+                                            <input
+                                                type="checkbox"
+                                                checked={activeFilters.includes(opt.value)}
+                                                onChange={() => toggleFilter(opt.value)}
+                                                className="w-3.5 h-3.5 accent-[#1A9C9C] cursor-pointer"
+                                            />
+                                            <span className={`text-[13px] ${activeFilters.includes(opt.value) ? 'text-[#1A9C9C] font-semibold' : 'text-[#334155]'
+                                                }`}>{opt.label}</span>
+                                        </label>
+                                    ))}
+                                </div>
+
+                                {/* Status group */}
+                                <div className="px-3 pt-1 pb-3 border-t border-[#F5F5F5]">
+                                    <p className="text-[10px] font-semibold uppercase tracking-wide text-[#9CA3AF] mb-1.5 mt-2">Status</p>
+                                    {FILTER_OPTIONS.filter(o => o.field === 'status').map(opt => (
+                                        <label key={opt.value} className="flex items-center gap-2.5 py-1.5 cursor-pointer group">
+                                            <input
+                                                type="checkbox"
+                                                checked={activeFilters.includes(opt.value)}
+                                                onChange={() => toggleFilter(opt.value)}
+                                                className="w-3.5 h-3.5 accent-[#1A9C9C] cursor-pointer"
+                                            />
+                                            <span className={`text-[13px] ${activeFilters.includes(opt.value) ? 'text-[#1A9C9C] font-semibold' : 'text-[#334155]'
+                                                }`}>{opt.label}</span>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <button className="flex items-center gap-2 border border-[#B0B0B0] text-[#334155] text-[13px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <FiDownload size={15} /> Export
                     </button>
                 </div>

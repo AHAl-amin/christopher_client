@@ -29,10 +29,10 @@ export default function DashboardLayout() {
             { name: "Group Orders", path: "/dashboard/orders/group_orders", icon: <FaUserFriends size={18} /> },
           ],
         },
-        { name: "Product ", icon: <CiShop size={22} />, path: "/booking_info" },
-        { name: "Customers", icon: <FiUsers size={20} />, path: "/roles" },
+        { name: "Product ", icon: <CiShop size={22} />, path: "/dashboard/products" },
+        { name: "Customers", icon: <FiUsers size={20} />, path: "/dashboard/customers" },
         { name: "TOOLS" },
-        { name: "Account & Settings", icon: <FiSettings size={20} />, path: "/promotions" },
+        { name: "Account & Settings", icon: <FiSettings size={20} />, path: "/dashboard/account_and_settings" },
 
       ],
     },
@@ -130,7 +130,7 @@ export default function DashboardLayout() {
                                   onClick={() => handleItemClick(child.name, child.path)}
                                   className={`flex items-center gap-2 text-[13px] px-2 py-2 rounded-md transition-colors ${selectedItem === child.name
                                       ? 'bg-[#1A9C9C] text-white font-medium'
-                                      : 'text-gray-600 hover:bg-[#1A9C9C]/20 hover:text-[#1A9C9C]'
+                                      : 'text-gray-600 hover:bg-[#1A9C9C]/50 hover:text-[#1A9C9C]'
                                     }`}
                                 >
                                   {child.icon && (
@@ -154,7 +154,7 @@ export default function DashboardLayout() {
                       <Link
                         to={item.path}
                         onClick={() => handleItemClick(item.name, item.path)}
-                        className={`flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-[#1A9C9C]/20 transition-colors ${selectedItem === item.name ? "bg-[#1A9C9C] text-white font-medium" : ""
+                        className={`flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-[#1A9C9C]/50 transition-colors ${selectedItem === item.name ? "bg-[#1A9C9C] text-white font-medium" : ""
                           }`}
                       >
                         <span className={`transition-colors duration-300 ${selectedItem === item.name ? "text-white" : "text-gray-500"

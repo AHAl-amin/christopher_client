@@ -24,6 +24,12 @@ import ChooseDeliveryMethod from "../Pages/PaymentProcess/ChooseDeliveryMethod/C
 import PickupDetails from "../Pages/PaymentProcess/PickupDetails/PickupDetails";
 import Orders from "../Layout/Admin/Orders";
 import GroupOrders from "../Layout/Admin/GroupOrders";
+import Product from "../Layout/Admin/Product";
+import AddNewProduct from "../Layout/Admin/AddNewProduct";
+import ManageAddOns from "../Layout/Admin/ManageAddOns";
+import AddOns from "../Layout/Admin/AddOns";
+import Customers from "../Layout/Admin/Customers";
+import AccountAndSettings from "../Layout/Admin/AccountAndSettings";
 
 
 
@@ -62,6 +68,12 @@ export const router = createBrowserRouter([
       { path: 'admin_home', element: <Admin_Home /> },
       { path: '/dashboard/orders', element: <Orders /> },
       { path: '/dashboard/orders/group_orders', element: <GroupOrders /> },
+      { path: '/dashboard/products', element: <Product /> },
+      { path: '/dashboard/products/add_new_product', element: <AddNewProduct /> },
+      { path: '/dashboard/products/manage_add_ons', element: <ManageAddOns /> },
+      { path: '/dashboard/products/add_ons', element: <AddOns /> },
+      { path: '/dashboard/customers', element: <Customers /> },
+      { path: '/dashboard/account_and_settings', element: <AccountAndSettings /> },
     ]
   },
 
