@@ -1,8 +1,11 @@
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { FiUsers } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 
 function Banner() {
+
+  const navigate = useNavigate()
   return (
     <div className="bg-[url('https://res.cloudinary.com/dcpbtzues/image/upload/v1771402932/Frame_2147226546_vmqghx.png')] bg-cover bg-center bg-no-repeat  p-12 md:p-16 mx-auto h-[88vh]"
     >
@@ -24,7 +27,9 @@ function Banner() {
                 Start Group Order<FiUsers />
               </button>
 
-              <button className="bg-[#F68528] hover:bg-orange-500 cursor-pointer text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+              <button  
+              onClick={() => navigate('/menu')}
+              className="bg-[#F68528] hover:bg-orange-500 cursor-pointer text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
                 Explore Menu
                 <ArrowRight size={20} />
               </button>

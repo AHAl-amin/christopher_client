@@ -15,24 +15,21 @@ const Registration = () => {
     { code: '+61', flag: '🇦🇺', name: 'Australia' },
   ];
 
+
+  
+
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
-      <div className="w-full bg-gray-900 md:w-1/2 h-[30vh] md:h-screen relative">
-      <Lottie
-        animationData={registration} 
-        loop={true} 
-          className="absolute inset-0 w-3/4 h-full mx-auto object-cover"></Lottie>
+    <div className="min-h-screen max-w-7xl mx-auto flex flex-col md:flex-row">
+      <div className="w-full  md:w-1/2 h-[30vh] md:h-screen relative p-10">
+      <img src="https://res.cloudinary.com/dcpbtzues/image/upload/v1771926718/Frame_2147226548_u4pxzt.png" alt="Background" className="absolute inset-0 w-full h-full object-cover " />
+       
+        
         
        
       </div>
 
       <div className="w-full md:w-1/2 min-h-[100vh] md:h-screen relative">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-40"
-          style={{
-            backgroundImage: "url('https://i.ibb.co.com/cctYrsKY/Group-1686551056.png')",
-          }}
-        ></div>
+      
 
         <div className="relative z-10 flex flex-col items-center justify-center min-h-[70vh] md:h-screen p-8">
           <div className="w-full max-w-xl space-y-8">

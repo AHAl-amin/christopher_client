@@ -161,7 +161,7 @@ function OnSale() {
         <div>
             {/* Background Image Container */}
             <div className="bg-[url(https://res.cloudinary.com/dcpbtzues/image/upload/v1771410333/Rectangle_34624432_dltrnl.png)] bg-cover bg-center bg-no-repeat py-16 px-4 h-[80vh] relative">
-                <div className="max-w-7xl mx-auto flex">
+                <div className="container mx-auto flex">
                     {/* Empty Space for the left side image */}
                     <div className="hidden lg:block w-1/3"></div>
 

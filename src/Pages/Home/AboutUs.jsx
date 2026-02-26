@@ -1,8 +1,11 @@
 import React from 'react'
 import { ShoppingBag, Menu, ArrowRight } from 'lucide-react'
 import aboutimg from '../../../public/img/aboutimg.png'
+import { Link } from 'react-router-dom'
+
 
 function AboutUs() {
+
     return (
         <div className='w-full relative'>
             <div className="container mx-auto px-4 xl:pb-36 lg:pb-24 pb-12 pt-10">
@@ -60,10 +63,14 @@ function AboutUs() {
                             <ShoppingBag size={20} />
                         </button>
 
-                        <button className="bg-[#F68528] hover:bg-orange-500 cursor-pointer md:w-[40%] w-full text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <Link 
+                        to="/menu"
+                        className="bg-[#F68528] hover:bg-orange-500 cursor-pointer md:w-[40%] w-full text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                        
+                        >
                             Explore Menu
                             <ArrowRight size={20} />
-                        </button>
+                        </Link>
                     </div>
 
                 </div>
