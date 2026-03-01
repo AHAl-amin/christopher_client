@@ -176,27 +176,27 @@ function TopProducts() {
     }
 
     return (
-        <div className="container mx-auto md:px-0 px-6 py-16">
+        <div className="container mx-auto  py-16 pb-6 xl:px-0 px-4">
             {/* Header Section */}
-            <div className="flex justify-between items-center mb-12 border-b border-dashed border-[#CAD5E2] pb-6">
-                <h1 className="lusitana text-4xl font-medium text-[#221E1F]">Top Products</h1>
+            <div className="flex justify-between md:flex-row flex-col mb-12 border-b border-dashed border-[#CAD5E2] ">
+                <h1 className="lusitana text-4xl font-medium text-[#221E1F] md:mb-0 mb-6">Top Products</h1>
 
                 {/* Search and Filter */}
-                <div className="flex gap-6 items-center">
+                <div className="flex md:flex-row flex-col gap-6 ">
                     {/* Search Bar */}
-                    <div className="relative">
+                    <div className="relative   ">
                         <input
                             type="text"
                             placeholder="Search....."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-4 pr-10 py-2 bg-gray-100 rounded-full text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 w-56"
+                            className="pl-4 pr-10 py-2 bg-gray-100 rounded-full text-sm text-gray-700 w-full placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 "
                         />
                         <Search size={18} className="absolute right-3 top-2.5 text-gray-400" />
                     </div>
 
                     {/* Filter Tabs */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 justify-center">
                         <button
                             onClick={() => setActiveFilter('featured')}
                             className={`text-base font-medium transition-colors cursor-pointer ${activeFilter === 'featured'
@@ -230,7 +230,7 @@ function TopProducts() {
            
 
             {/* Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12 xl:px-0 px-4">
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (
                         <div

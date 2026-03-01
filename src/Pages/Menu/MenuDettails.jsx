@@ -275,7 +275,7 @@ function MenuDettails() {
     const OptionCard = ({ option, isSelected, onClick, isSize = false }) => (
         <div
             onClick={onClick}
-            className={`flex flex-col items-center pt-4 rounded-lg border-2 cursor-pointer transition-all relative ${isSelected
+            className={`flex flex-col items-center pt-4 rounded-lg border-2 cursor-pointer transition-all relative xl:px-0 px-4 ${isSelected
                 ? 'border-[#11A231] bg-[#F8FBFC]'
                 : 'border-[#E5E5E5] bg-[#F8FBFC] hover:border-gray-300'
                 }`}
@@ -284,17 +284,17 @@ function MenuDettails() {
                 <img
                     src={option.image}
                     alt={option.name}
-                    className="w-24 h-24 object-cover rounded mb-2"
+                    className="md:w-24 w-10 md:h-24 h-10 object-cover rounded mb-2"
                 />
             )}
             {isSize && (
                 <img
                     src={menuImage}
                     alt={option.name}
-                    className="w-20 h-24 object-cover rounded mb-2"
+                    className="md:w-20 w-16 md:h-24 h-16 object-cover rounded mb-2"
                 />
             )}
-            <div className='bg-[#013A3A] flex justify-between w-full p-2 rounded-b-md'>
+            <div className='bg-[#013A3A] flex xl:flex-row flex-col justify-between items-center w-full p-2 rounded-b-md'>
                 <span className="text-sm  text-[#ffffff] text-center">{option.name}</span>
                 <span className="text-xs text-[#F2B27D] font-semibold mt-1">${option.price.toFixed(2)}</span>
             </div>
@@ -315,7 +315,7 @@ function MenuDettails() {
             return (
                 <div className="mb-6">
                     <h3 className="md:text-4xl text-3xl lusitana font-medium text-[#314158] mb-4">{title}</h3>
-                    <div className="grid grid-cols-3 gap-3 mb-4">
+                    <div className="grid lg:grid-cols-3 grid-cols-2 gap-3 mb-4">
                         {options.map(option => (
                             <OptionCard
                                 key={option.id}
@@ -362,7 +362,7 @@ function MenuDettails() {
                                 <span className="text-pink-700 font-medium">Maximum 3 option allowed. Remove one to add another</span>
                             </div>
                         )}
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid lg:grid-cols-3 grid-cols-2 gap-4">
                             {options.map(option => (
                                 <OptionCard
                                     key={option.id}
@@ -386,7 +386,7 @@ function MenuDettails() {
     return (
         <div>
             <MenuBanner />
-            <div className="max-w-7xl mx-auto md:px-0 px-4 py-16 ">
+            <div className="max-w-7xl mx-auto  py-16 xl:px-0 px-4 ">
                 {/* Back Button */}
                 <button
                     onClick={() => navigate('/menu')}
@@ -397,7 +397,7 @@ function MenuDettails() {
                 </button>
 
                 {/* Product Details */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 ">
                     {/* Product Image */}
                     <div className="flex flex-col  items-center">
                         <div className="relative xl:w-2/3 lg:w-2/3 w-full border overflow-hidden bg-[#FFFFFF] border-[#E9E9E9] rounded-2xl ">
@@ -429,7 +429,7 @@ function MenuDettails() {
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div className='xl:px-0 px-4'>
                             <div className=''>
                                 <p className='text-[#C17B88] flex items-center gap-2 py-4'> <CiClock2 className='text-[#C17B88]' /> Ready in 10–15 minutes</p>
                                 <h1 className="lusitana text-4xl font-medium text-[#221E1F] mb-4">

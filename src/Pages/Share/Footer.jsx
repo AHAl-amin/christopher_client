@@ -15,7 +15,7 @@ function Footer() {
       </div>
       <div className="container mx-auto px-8">
         {/* Main Footer Content */}
-        <div className="flex justify-between gap-12 mb-12">
+        <div className="flex md:flex-row flex-col justify-between gap-12 mb-12">
           {/* Brand Section */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold">

@@ -16,8 +16,8 @@ const RatingEditModal = ({ isOpen, onClose, rating }) => {
     if (!isOpen || !rating) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/40 backdrop-blur-sm">
-            <div className="bg-white rounded-[24px] w-full max-w-lg relative shadow-xl overflow-hidden p-8 md:p-10">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/40 backdrop-blur-sm ">
+            <div className="bg-white rounded-[24px] w-full max-w-lg relative shadow-xl overflow-hidden p-8 md:p-10 h-[80vh] overflow-y-auto">
 
                 {/* Close Button */}
                 <button

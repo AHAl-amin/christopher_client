@@ -153,6 +153,7 @@ function MenuProduct() {
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('All Products')
     const [currentPage, setCurrentPage] = useState(1)
+    const [categoryOpen, setCategoryOpen] = useState(false)
     const itemsPerPage = 6
 
     const categories = [
@@ -211,7 +212,7 @@ function MenuProduct() {
     }
 
     return (
-        <div className="container mx-auto md:px-0 px-6 py-16">
+        <div className="container mx-auto  py-16  xl:px-0 px-4">
             {/* Header Section */}
             <div className="flex justify-between items-center mb-12 border-b border-dashed border-[#CAD5E2] pb-6">
                 <h1 className="lusitana text-4xl font-medium text-[#221E1F]">Menu</h1>
@@ -232,8 +233,48 @@ function MenuProduct() {
             {/* Main Grid: Sidebar + Products */}
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                 {/* Sidebar - Categories */}
-                <div>
-                    <div className="lg:col-span-1 border border-[#C9D8E0] rounded p-4 bg-[#F5F7F8]">
+                <div className="lg:col-span-1">
+                    {/* Mobile/tablet: collapsible toggle */}
+                    <div className="lg:hidden mb-4">
+                        <button
+                            onClick={() => setCategoryOpen(!categoryOpen)}
+                            className="w-full flex items-center justify-between px-4 py-3 border border-[#C9D8E0] rounded bg-[#F5F7F8] text-[#221E1F] font-semibold text-lg lusitana"
+                        >
+                            <span>Categories{selectedCategory !== 'All Products' ? ` · ${selectedCategory}` : ''}</span>
+                            <IoChevronForwardOutline
+                                className={`transition-transform duration-200 ${categoryOpen ? 'rotate-90' : ''}`}
+                            />
+                        </button>
+
+                        {/* Dropdown list */}
+                        {categoryOpen && (
+                            <div className="border border-[#C9D8E0] rounded-b bg-[#F5F7F8] mt-1 overflow-hidden shadow-md">
+                                {categories.map((category, index) => (
+                                    <button
+                                        key={category}
+                                        onClick={() => {
+                                            setSelectedCategory(category)
+                                            setCurrentPage(1)
+                                            setCategoryOpen(false)
+                                        }}
+                                        className={`block w-full text-left px-4 py-3 transition-colors ${index !== categories.length - 1 ? 'border-b border-[#D1D5DC]/40' : ''
+                                            } ${selectedCategory === category
+                                                ? 'text-[#1A9C9C] font-medium bg-teal-50'
+                                                : 'text-[#4A5565] hover:bg-gray-100'
+                                            }`}
+                                    >
+                                        {category}
+                                        {selectedCategory === category && (
+                                            <span className="float-right text-[#1A9C9C]"><IoChevronForwardOutline /></span>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Desktop: always-visible sidebar */}
+                    <div className="hidden lg:block border border-[#C9D8E0] rounded p-4 bg-[#F5F7F8]">
                         <h3 className="text-2xl font-semibold text-[#221E1F] lusitana mb-6">Categories</h3>
                         <div className="space-y-3">
                             {categories.map((category, index) => (
@@ -243,9 +284,10 @@ function MenuProduct() {
                                         setSelectedCategory(category)
                                         setCurrentPage(1)
                                     }}
-                                    className={`block w-full text-left px-4 py-2  transition-colors ${index !== categories.length - 1 ? 'border-b border-[#D1D5DC]/40' : ''} ${selectedCategory === category
-                                        ? 'text-[#1A9C9C]  font-medium'
-                                        : 'text-[#4A5565] hover:bg-gray-100'
+                                    className={`block w-full text-left px-4 py-2 transition-colors ${index !== categories.length - 1 ? 'border-b border-[#D1D5DC]/40' : ''
+                                        } ${selectedCategory === category
+                                            ? 'text-[#1A9C9C] font-medium'
+                                            : 'text-[#4A5565] hover:bg-gray-100'
                                         }`}
                                 >
                                     {category}
@@ -259,7 +301,7 @@ function MenuProduct() {
                 {/* Products Section */}
                 <div className="lg:col-span-4">
                     {/* Products Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-6 mb-12">
                         {paginatedProducts.length > 0 ? (
                             paginatedProducts.map((product) => (
                                 <div

@@ -160,7 +160,7 @@ function OnSale() {
     return (
         <div>
             {/* Background Image Container */}
-            <div className="bg-[url(https://res.cloudinary.com/dcpbtzues/image/upload/v1771410333/Rectangle_34624432_dltrnl.png)] bg-cover bg-center bg-no-repeat py-16 px-4 h-[80vh] relative">
+            <div className="bg-[url(https://res.cloudinary.com/dcpbtzues/image/upload/v1771410333/Rectangle_34624432_dltrnl.png)] bg-cover bg-center bg-no-repeat py-16 px-4 lg:h-[80vh] md:h-[90vh] h-[100vh] relative">
                 <div className="container mx-auto flex">
                     {/* Empty Space for the left side image */}
                     <div className="hidden lg:block w-1/3"></div>
@@ -232,11 +232,11 @@ function OnSale() {
 
                                             {/* Buttons */}
                                             <div className="flex items-center gap-3.5 pointer-events-auto mt-auto">
-                                                <button className="bg-[#1A9C9C] hover:bg-[#158080] text-white text-[12px] font-medium py-1.5 px-3.5 rounded flex items-center gap-2 transition-colors cursor-pointer shadow-md">
+                                                <button className="bg-[#1A9C9C] hover:bg-[#158080] text-white text-[8px] md:text-[12px] font-medium py-1.5 px-3.5 rounded flex items-center gap-2 transition-colors cursor-pointer shadow-md">
                                                     Order Now
                                                     <ShoppingBag size={14} />
                                                 </button>
-                                                <button className="bg-white hover:bg-gray-100 text-[#454545] w-[30px] h-[30px] rounded-full flex items-center justify-center transition-colors shadow-md cursor-pointer border border-gray-100 relative group/heart">
+                                                <button className="bg-white hover:bg-gray-100 text-[#454545] w-[20px] h-[20px] md:w-[30px] md:h-[30px] rounded-full flex items-center justify-center transition-colors shadow-md cursor-pointer border border-gray-100 relative group/heart">
                                                     <FiHeart size={15} className="group-hover/heart:fill-red-500 group-hover/heart:text-red-500 transition-colors" />
                                                 </button>
                                             </div>
@@ -250,7 +250,7 @@ function OnSale() {
             </div>
 
             {/* Testimonials Segment */}
-            <div className='container mx-auto flex md:flex-row flex-col gap-10 py-10'>
+            <div className='container mx-auto flex md:flex-row flex-col gap-10 py-10 xl:px-0 px-4'>
                 <div className='w-full md:w-1/2 flex items-center justify-center'>
                     <p className='lusitana text-4xl max-w-[500px] lg:leading-relaxed leading-10'>
                         “Everything about our <span className='text-[#1A9C9C]'>experience</span> was amazing, from pulling up to the valet, to the spectacular views, <span className='text-[#1A9C9C]'>top notch food, five star service </span>and sounds of the ocean while eating.”

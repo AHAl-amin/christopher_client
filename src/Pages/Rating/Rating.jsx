@@ -108,7 +108,7 @@ const Rating = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-20">
                     {filteredRatings.length > 0 ? (
                         filteredRatings.map((rating) => (
-                            <div key={rating.id} className="bg-[#F1F5F9] rounded-[16px] p-6 flex gap-6 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-shadow hover:shadow-sm">
+                            <div key={rating.id} className="bg-[#F1F5F9] rounded-[16px] p-6 flex lg:flex-row flex-col gap-6 shadow-[0_2px_8px_rgba(0,0,0,0.02)] transition-shadow hover:shadow-sm">
 
                                 {/* Image Box */}
                                 <div className="bg-white rounded-[12px] p-3 shadow-sm border border-gray-50 flex-shrink-0 flex items-center justify-center">

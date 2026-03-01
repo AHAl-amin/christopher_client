@@ -4,13 +4,13 @@ import { FiUsers } from 'react-icons/fi'
 
 function AboutBanner() {
   return (
-  <div       className="bg-[url('https://res.cloudinary.com/dcpbtzues/image/upload/v1771483299/Frame_2147226552_x5lbaa.png')] bg-cover bg-center bg-no-repeat  mx-auto h-[88vh]"
+  <div       className="bg-[url('https://res.cloudinary.com/dcpbtzues/image/upload/v1771483299/Frame_2147226552_x5lbaa.png')] bg-cover bg-center bg-no-repeat  mx-auto md:h-[88vh] h-[50vh]"
 >
-      <div className="max-w-7xl mx-auto flex items-center  h-full">
+      <div className="max-w-7xl mx-auto flex items-center  h-full xl:px-0 px-4">
         {/* Text Content */}
         <div className=''>
           <div className="space-y-6 max-w-2xl ">
-          <h1 className="lusitana md:text-7xl text-6 lg:text-8xl font-medium text-[#221E1F] leading-tight ">
+          <h1 className="lusitana md:text-7xl text-6xl lg:text-8xl font-medium text-[#221E1F] leading-tight ">
            About Us
           </h1>
 
