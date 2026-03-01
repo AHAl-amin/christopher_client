@@ -30,6 +30,9 @@ import ManageAddOns from "../Layout/Admin/ManageAddOns";
 import AddOns from "../Layout/Admin/AddOns";
 import Customers from "../Layout/Admin/Customers";
 import AccountAndSettings from "../Layout/Admin/AccountAndSettings";
+import EmailOtpVerify from "../Pages/Authentication/EmailOtpVerify";
+import GuestLogin from "../Pages/Authentication/GuestLogin";
+import GuestRegistration from "../Pages/Authentication/GuestRegistration";
 
 
 
@@ -81,5 +84,8 @@ export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
   { path: '/verify', element: <EmailVerification /> },
   { path: '/otp_verify', element: <OTP_Verification /> },
+  { path: '/email_otp_verify', element: <EmailOtpVerify /> },
   { path: '/reset_password', element: <ResetPassword /> },
+  { path: '/guest_login', element: <GuestLogin /> },
+  { path: '/guest_registration', element: <GuestRegistration /> },
 ]);

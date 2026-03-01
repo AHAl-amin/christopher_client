@@ -32,7 +32,7 @@ const Navbar = () => {
       )}
 
       {/* Sidebar */}
-      <div className={`fixed top-30 left-0 lg:w-[600px] w-full rounded-b  bg-white z-40 transform transition-transform duration-300 ${sidebarOpen ? 'md:translate-x-10 translate-0' : '-translate-x-full'
+      <div className={`fixed top-30 left-0 lg:w-[600px] w-full rounded-b  bg-white z-40 transform transition-transform duration-300 overflow-y-auto ${sidebarOpen ? 'md:translate-x-10 translate-0' : '-translate-x-full'
         }`}>
         <div className="p-6">
           {/* Close Button */}

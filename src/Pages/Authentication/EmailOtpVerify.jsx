@@ -59,7 +59,7 @@ const OtpInput = ({ otp, setOtp }) => {
     );
 };
 
-const OTP_Verification = () => {
+const EmailOtpVerify = () => {
     const navigate = useNavigate()
     const [otp, setOtp] = useState(['', '', '', '']);
 
@@ -112,7 +112,7 @@ const OTP_Verification = () => {
                             {/* Submit Button */}
                             <button
                                 type="submit"
-                                onClick={() => navigate('/')}
+                                onClick={() => navigate('/reset_password')}
                                 className="w-full h-12 rounded-[12px] text-white font-semibold bg-[#1A9C9C] text-base transition-opacity hover:opacity-80 cursor-pointer"
                             >
                                 Confirm
@@ -136,4 +136,4 @@ const OTP_Verification = () => {
     );
 };
 
-export default OTP_Verification;
+export default EmailOtpVerify;

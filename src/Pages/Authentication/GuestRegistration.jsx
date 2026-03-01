@@ -3,7 +3,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaApple } from 'react-icons/fa';
 
-const Registration = () => {
+const GuestRegistration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreed, setAgreed] = useState(false);
@@ -29,11 +29,9 @@ const Registration = () => {
             {/* Header */}
             <div className="space-y-2 text-center">
               <h1 className="text-3xl font-semibold luxury  text-[#333333]" >
-                Create Your Account
+              Contact Information
               </h1>
-              <p className="text-sm text-gray-500">
-                Join us at Jones Shakes and experience<br />delicious food like never before.
-              </p>
+           
             </div>
 
             {/* Form */}
@@ -115,7 +113,7 @@ const Registration = () => {
                 className="w-full h-12 rounded-[12px] text-white font-semibold bg-[#1A9C9C] text-base transition-opacity hover:opacity-80 cursor-pointer"
                 
               >
-                Register
+                Register as Guest
               </button>
 
               {/* Terms Checkbox */}
@@ -176,20 +174,12 @@ const Registration = () => {
               {/* Already have an account */}
               <p className="text-center text-sm text-gray-700">
                 Already have an account?{' '}
-                <Link to="/login" className="text-teal-600 font-semibold hover:underline">
+                <Link to="/login" className="text-[#F68528] font-semibold hover:underline">
                   Log In
                 </Link>
               </p>
 
-              {/* Continue as guest */}
-              <p className="text-center text-sm">
-                <Link
-                  to="/guest_registration"
-                  className="text-[#E07A22] font-medium hover:underline inline-flex items-center gap-1"
-                >
-                  Continue as a guest <span>→</span>
-                </Link>
-              </p>
+             
 
             </form>
           </div>
@@ -199,4 +189,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default GuestRegistration;

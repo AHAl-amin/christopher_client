@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaApple } from 'react-icons/fa';
 
-const Registration = () => {
+const GuestLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreed, setAgreed] = useState(false);
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen max-w-7xl mx-auto flex flex-col md:flex-row gap-10">
       {/* Left image panel */}
-      <div className="w-full md:w-1/2 md:h-screen h-[80vh] py-10 relative px-4 xl:px-0">
+      <div className="w-full md:w-1/2 md:h-screen h-[80vh] py-10 relative overflow-y-auto px-4 xl:px-0">
         <img
           src="https://res.cloudinary.com/dcpbtzues/image/upload/v1771926718/Frame_2147226548_u4pxzt.png"
           alt="Background"
@@ -22,33 +21,22 @@ const Registration = () => {
       </div>
 
       {/* Right form panel */}
-      <div className="w-full md:w-1/2 min-h-[100vh] md:h-screen relative  ">
+      <div className="w-full md:w-1/2 min-h-[100vh] md:h-screen relative ">
         <div className="relative z-10 flex flex-col items-center justify-center min-h-[70vh] md:h-screen px-8 py-10 max-w-lg mx-auto overflow-y-auto">
           <div className="w-full  space-y-5">
 
             {/* Header */}
             <div className="space-y-2 text-center">
               <h1 className="text-3xl font-semibold luxury  text-[#333333]" >
-                Create Your Account
+                Contact Information
               </h1>
-              <p className="text-sm text-gray-500">
-                Join us at Jones Shakes and experience<br />delicious food like never before.
-              </p>
+             
             </div>
 
             {/* Form */}
             <form className="space-y-6 pt-6">
 
-              {/* Full Name */}
-              <div className="relative">
-                <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-gray-500 z-10">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  className="w-full border border-gray-300 rounded-md h-12 px-3 text-sm text-gray-800 focus:outline-none focus:border-teal-500 bg-white"
-                />
-              </div>
+          
 
               {/* Email Address */}
               <div className="relative">
@@ -61,16 +49,7 @@ const Registration = () => {
                 />
               </div>
 
-              {/* Phone Number */}
-              <div className="relative">
-                <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-gray-500 z-10">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  className="w-full border border-gray-300 rounded-md h-12 px-3 text-sm text-gray-800 focus:outline-none focus:border-teal-500 bg-white"
-                />
-              </div>
+            
 
               {/* Password */}
               <div className="relative">
@@ -84,41 +63,14 @@ const Registration = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/3 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
                   {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
+              <p className='text-lg flex justify-end mt-2'><Link to="/verify" className='text-[#E4002A] hover:underline'>Forgot password </Link></p>
               </div>
 
-              {/* Confirm Password */}
-              <div className="relative">
-                <label className="absolute -top-2 left-3 bg-white px-1 text-xs text-gray-500 z-10">
-                  Confirm Password
-                </label>
-                <input
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  className="w-full border border-gray-300 rounded-md h-12 px-3 pr-10 text-sm text-gray-800 focus:outline-none focus:border-teal-500 bg-white"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showConfirmPassword ? <Eye size={18} /> : <EyeOff size={18} />}
-                </button>
-              </div>
-
-              {/* Register Button */}
-              <button
-                type="submit"
-                onClick={() => navigate('/otp_verify')}
-                className="w-full h-12 rounded-[12px] text-white font-semibold bg-[#1A9C9C] text-base transition-opacity hover:opacity-80 cursor-pointer"
-                
-              >
-                Register
-              </button>
-
-              {/* Terms Checkbox */}
+                  {/* Terms Checkbox */}
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -131,6 +83,20 @@ const Registration = () => {
                   I Agree with terms of use
                 </label>
               </div>
+
+
+         
+
+              {/* Register Button */}
+              <button
+                type="submit"
+                className="w-full h-12 rounded-[12px] text-white font-semibold bg-[#1A9C9C] text-base transition-opacity hover:opacity-80 cursor-pointer"
+                
+              >
+                Log In as Guest
+              </button>
+
+           
 
               {/* Or Divider */}
               <div className="flex items-center gap-3">
@@ -175,21 +141,13 @@ const Registration = () => {
 
               {/* Already have an account */}
               <p className="text-center text-sm text-gray-700">
-                Already have an account?{' '}
-                <Link to="/login" className="text-teal-600 font-semibold hover:underline">
-                  Log In
+               Don’t have an account?{' '}
+                <Link to="/sign_up" className="text-[#E07A22] font-semibold hover:underline">
+                  Sign Up
                 </Link>
               </p>
 
-              {/* Continue as guest */}
-              <p className="text-center text-sm">
-                <Link
-                  to="/guest_registration"
-                  className="text-[#E07A22] font-medium hover:underline inline-flex items-center gap-1"
-                >
-                  Continue as a guest <span>→</span>
-                </Link>
-              </p>
+            
 
             </form>
           </div>
@@ -199,4 +157,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default GuestLogin;
