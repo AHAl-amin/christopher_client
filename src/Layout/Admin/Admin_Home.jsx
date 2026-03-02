@@ -100,166 +100,193 @@ const Admin_Home = () => {
     <div className=" min-h-screen">
       <h1 className="luxury text-[30px] font-semibold text-[#221E1F] mb-6">Dashboard</h1>
 
-  <div className='flex w-full lg:flex-row flex-col-reverse  justify-between gap-10'>
+      <div className='flex w-full lg:flex-row flex-col-reverse  justify-between gap-10'>
         <div className='w-full flex flex-col gap-5'>
           <div className="bg-white border border-[#F0F0F0] rounded-xl px-5 py-10 shadow-sm  h-fit space-y-10">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-xl font-semibold text-[#45556C]">Sales Target</span>
-            <button className="text-[#1A9C9C] text-[12px] font-medium flex items-center gap-1 hover:underline cursor-pointer">
-              + Set Target
-            </button>
-          </div>
-          <div className="flex justify-between text-[12px] mb-2">
-            <div>
-              <p className="text-[#9CA3AF]">In Progress</p>
-              <p className="text-[#F68528] font-medium text-[15px]">$231,032,444</p>
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xl font-semibold text-[#45556C]">Sales Target</span>
+              <button className="text-[#1A9C9C] text-[12px] font-medium flex items-center gap-1 hover:underline cursor-pointer">
+                + Set Target
+              </button>
             </div>
-            <div className="text-right">
-              <p className="text-[#9CA3AF]">Sales Target</p>
-              <p className="text-[#1A9C9C] font-bold text-[15px]">$500,000.00</p>
+            <div className="flex justify-between text-[12px] mb-2">
+              <div>
+                <p className="text-[#9CA3AF]">In Progress</p>
+                <p className="text-[#F68528] font-medium text-[15px]">$231,032,444</p>
+              </div>
+              <div className="text-right">
+                <p className="text-[#9CA3AF]">Sales Target</p>
+                <p className="text-[#1A9C9C] font-bold text-[15px]">$500,000.00</p>
+              </div>
+            </div>
+
+            <div className="w-full h-5 bg-[#E9F7F7] rounded-full relative overflow-visible">
+              <div
+                className="h-5 bg-[#1A9C9C] rounded-full relative"
+                style={{ width: `${progress}%` }}
+              >
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 bg-white border-4 border-[#1A9C9C] rounded-full shadow"></div>
+              </div>
             </div>
           </div>
 
-          <div className="w-full h-5 bg-[#E9F7F7] rounded-full relative overflow-visible">
-            <div
-              className="h-5 bg-[#1A9C9C] rounded-full relative"
-              style={{ width: `${progress}%` }}
-            >
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 bg-white border-4 border-[#1A9C9C] rounded-full shadow"></div>
+
+          <div className="bg-white border border-[#F0F0F0] rounded-xl p-5 shadow-sm ">
+            <h3 className="text-[14px] font-semibold text-[#221E1F] mb-4">Revenue Trend</h3>
+            <ResponsiveContainer width="100%" height={350}>
+              <LineChart data={chartData} margin={{ top: 100, right: 30, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
+                <XAxis dataKey="month" tick={{ fontSize: 11 }} stroke="#9CA3AF" />
+                <YAxis hide />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#A8D400', border: 'none', borderRadius: '6px', color: '#fff' }}
+                  formatter={(value) => `$${value}`}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="line1"
+                  stroke="#E97034"
+                  strokeWidth={2.5}
+                  dot={false}
+                  isAnimationActive={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="line2"
+                  stroke="#1A9C9C"
+                  strokeWidth={2}
+                  strokeDasharray="5 3"
+                  dot={false}
+                  isAnimationActive={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div className="bg-white border border-[#F0F0F0] rounded-xl p-5 shadow-sm">
+            <h3 className="text-[14px] font-semibold text-[#221E1F] mb-4">Revenue Trend</h3>
+            <ResponsiveContainer width="100%" height={350}>
+              <BarChart data={barChartData} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+                <CartesianGrid strokeDasharray="0" stroke="transparent" vertical={false} />
+                <XAxis
+                  dataKey="name"
+                  tick={{ fontSize: 11, fill: '#9CA3AF' }}
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <YAxis hide />
+                <Tooltip
+                  contentStyle={{ backgroundColor: '#fff', border: '1px solid #E5E7EB', borderRadius: '6px' }}
+                  formatter={(value) => `$${value}`}
+                />
+                <Bar
+                  dataKey="value"
+                  fill="#1A9C9C"
+                  radius={[8, 8, 0, 0]}
+                  isAnimationActive={false}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+        </div>
+
+        {/* ── Row 1 ── */}
+        <div className='w-full '>
+          <div className=" flex  gap-5 mb-5">
+
+
+            <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4  w-full ">
+              {statCardsData.map((card) => (
+                <StatCardItem key={card.id} card={card} />
+              ))}
             </div>
           </div>
-        </div>
+
+          {/* ── Row 2 ── */}
+          <div className=" mb-5  ">
 
 
-        <div className="bg-white border border-[#F0F0F0] rounded-xl p-5 shadow-sm ">
-          <h3 className="text-[14px] font-semibold text-[#221E1F] mb-4">Revenue Trend</h3>
-          <ResponsiveContainer width="100%" height={350}>
-            <LineChart data={chartData} margin={{ top: 100, right: 30, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
-              <XAxis dataKey="month" tick={{ fontSize: 11 }} stroke="#9CA3AF" />
-              <YAxis hide />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#A8D400', border: 'none', borderRadius: '6px', color: '#fff' }}
-                formatter={(value) => `$${value}`}
-              />
-              <Line
-                type="monotone"
-                dataKey="line1"
-                stroke="#E97034"
-                strokeWidth={2.5}
-                dot={false}
-                isAnimationActive={false}
-              />
-              <Line
-                type="monotone"
-                dataKey="line2"
-                stroke="#1A9C9C"
-                strokeWidth={2}
-                strokeDasharray="5 3"
-                dot={false}
-                isAnimationActive={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-            <div className="bg-white border border-[#F0F0F0] rounded-xl p-5 shadow-sm">
-          <h3 className="text-[14px] font-semibold text-[#221E1F] mb-4">Revenue Trend</h3>
-          <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={barChartData} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
-              <CartesianGrid strokeDasharray="0" stroke="transparent" vertical={false} />
-              <XAxis
-                dataKey="name"
-                tick={{ fontSize: 11, fill: '#9CA3AF' }}
-                axisLine={false}
-                tickLine={false}
-              />
-              <YAxis hide />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#fff', border: '1px solid #E5E7EB', borderRadius: '6px' }}
-                formatter={(value) => `$${value}`}
-              />
-              <Bar
-                dataKey="value"
-                fill="#1A9C9C"
-                radius={[8, 8, 0, 0]}
-                isAnimationActive={false}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-      </div>
-
-      {/* ── Row 1 ── */}
-   <div className='w-full '>
-       <div className=" flex  gap-5 mb-5">
-
-      
-        <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4  w-full ">
-          {statCardsData.map((card) => (
-            <StatCardItem key={card.id} card={card} />
-          ))}
-        </div>
-      </div>
-
-      {/* ── Row 2 ── */}
-      <div className=" mb-5  ">
-
-     
-        {/* Top Orders */}
-        <div className="bg-white border border-[#E7E7E7] rounded-xl shadow-sm h-fit w-full ">
-          <h3 className="text-lg font-semibold text-[#1A9C9C] mb-4 bg-[#F6F6F6] px-5 py-3 rounded-t-xl border border-[#E7E7E7]">Top Orders</h3>
-          <div className="space-y-4 p-5">
-            {topOrders.map((order) => (
-              <div key={order.rank} className="flex items-center justify-between ">
-                <div className="flex items-start gap-3">
-                  <span className="text-[13px] font-semibold text-[#6B7280] w-4">{order.rank}.</span>
-                  <div>
-                    <p className="text-[13px] font-medium text-[#221E1F]">{order.name}</p>
-                    <p className="text-[11px] text-[#9CA3AF]">{order.sub}</p>
+            {/* Top Orders */}
+            <div className="bg-white border border-[#E7E7E7] rounded-xl shadow-sm h-fit w-full  ">
+              <h3 className="text-lg font-semibold text-[#1A9C9C] mb-4 bg-[#F6F6F6] px-5 py-3 rounded-t-xl border border-[#E7E7E7]">Top Orders</h3>
+              <div className="space-y-4 p-5 ">
+                {topOrders.map((order) => (
+                  <div key={order.rank} className="flex items-center justify-between ">
+                    <div className="flex items-start gap-3">
+                      <span className="text-[13px] font-semibold text-[#6B7280] w-4">{order.rank}.</span>
+                      <div>
+                        <p className="text-[13px] font-medium text-[#221E1F]">{order.name}</p>
+                        <p className="text-[11px] text-[#9CA3AF]">{order.sub}</p>
+                      </div>
+                    </div>
+                    <span className="text-[13px] font-semibold text-[#221E1F]">{order.amount}</span>
                   </div>
-                </div>
-                <span className="text-[13px] font-semibold text-[#221E1F]">{order.amount}</span>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── Row 3 ── */}
-      <div className=" gap-5">
-
-        
-        {/* Recent Orders Table */}
-        <div className="bg-white border border-[#F0F0F0] rounded-xl  shadow-sm h-fit w-full ">
-          <div className="flex items-center justify-between text-lg font-semibold text-[#1A9C9C] mb-4 bg-[#F6F6F6] px-5 py-3 rounded-t-xl border border-[#E7E7E7]">
-            <h3 className="text-lg font-medium text-[#E97034] ">Recent Orders</h3>
-            <div className="flex justify-between w-full gap-6 text-[12px] font-semibold max-w-xs text-[#6B7280] pr-2">
-              <span>Price</span>
-              <span>Customer</span>
-              <span>Status</span>
             </div>
           </div>
-          <div className="space-y-3 p-5">
-            {recentOrders.map((order, i) => (
-              <div key={i} className="flex items-center justify-between ">
-                <div>
-                  <p className="text-[12px] font-medium text-[#221E1F]">{order.name}</p>
-                  <p className="text-[11px] text-[#9CA3AF]">{order.id}</p>
-                </div>
-                <div className="grid grid-cols-3 gap-4 items-start justify-end w-full max-w-xs">
-                  <span className="text-[12px] font-medium text-[#221E1F]">{order.price}</span>
-                  <span className="text-[12px] text-[#6B7280]">{order.customer}</span>
-                  <StatusBadge status={order.status} />
+
+          {/* ── Row 3 ── */}
+          <div className="gap-5 w-full">
+
+
+            {/* Recent Orders Table */}
+            <div className="bg-white border border-[#F0F0F0] rounded-xl shadow-sm h-fit w-full">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-[#F6F6F6] px-4 sm:px-5 py-3 rounded-t-xl border border-[#E7E7E7] gap-3">
+                <h3 className="text-base sm:text-lg font-medium text-[#E97034]">Recent Orders</h3>
+                <div className="hidden sm:flex justify-between gap-4 sm:gap-6 text-[11px] sm:text-[12px] font-semibold text-[#6B7280]">
+                  <span className="w-16 text-center">Price</span>
+                  <span className="w-20 text-center">Customer</span>
+                  <span className="w-24 text-end">Status</span>
                 </div>
               </div>
-            ))}
+              <div className="divide-y divide-[#F0F0F0]">
+                {recentOrders.map((order, i) => (
+                  <div key={i} className="p-4 sm:p-5">
+                    {/* Mobile View */}
+                    <div className="sm:hidden">
+                      <div className="mb-3">
+                        <p className="text-[12px] font-medium text-[#221E1F]">{order.name}</p>
+                        <p className="text-[10px] text-[#9CA3AF]">{order.id}</p>
+                      </div>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-[#9CA3AF]">Price</span>
+                          <span className="text-[12px] font-medium text-[#221E1F]">{order.price}</span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-[#9CA3AF]">Customer</span>
+                          <span className="text-[12px] text-[#6B7280]">{order.customer}</span>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[10px] text-[#9CA3AF]">Status</span>
+                          <StatusBadge status={order.status} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Desktop View */}
+                    <div className="hidden sm:flex items-center justify-between">
+                      <div className="flex-1">
+                        <p className="text-[12px] font-medium text-[#221E1F]">{order.name}</p>
+                        <p className="text-[11px] text-[#9CA3AF]">{order.id}</p>
+                      </div>
+                      <div className="flex items-center justify-end gap-8 w-max">
+                        <span className="text-[12px] font-medium text-[#221E1F] w-16 text-center">{order.price}</span>
+                        <span className="text-[12px] text-[#6B7280] w-20 text-center">{order.customer}</span>
+                        <div className="w-24 text-end">
+                          <StatusBadge status={order.status} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-   </div>
-  </div>
     </div>
   );
 };

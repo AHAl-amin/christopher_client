@@ -191,10 +191,10 @@ export default function DashboardLayout() {
 
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Navbar */}
-        <header className="h-22 bg-white border-b border-gray-200">
+        <header className="h-22 bg-white border-b border-gray-200 ">
           <div className="h-full px-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
-              {/* Three-dot menu button for mobile */}
+             
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="xl:hidden p-2 hover:bg-gray-100 rounded-lg"
@@ -202,7 +202,7 @@ export default function DashboardLayout() {
                 <Menu size={24} className="text-gray-700" />
               </button>
 
-              <div className="flex flex-col min-w-3xl">
+              <div className="flex flex-col xl:min-w-3xl md:min-w-md">
 
                 <input type="text" placeholder="Search" className="input input-bordered focus:border-[#1A9C9C] focus-within:border-2 focus:outline-none  rounded-md " />
               </div>
@@ -217,7 +217,7 @@ export default function DashboardLayout() {
                     alt="Admin Avatar"
                   />
                 </div>
-                <div>
+                <div className="hidden md:block ">
                   <h2 className="font-bold">Admin</h2>
                   <p className="text-gray-900">admin@hn.com</p>
                 </div>
