@@ -259,6 +259,9 @@ const Admin_Home = () => {
                           <span className="text-[10px] text-[#9CA3AF]">Customer</span>
                           <span className="text-[12px] text-[#6B7280]">{order.customer}</span>
                         </div>
+
+
+                        
                         <div className="flex flex-col gap-1">
                           <span className="text-[10px] text-[#9CA3AF]">Status</span>
                           <StatusBadge status={order.status} />
