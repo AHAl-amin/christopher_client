@@ -184,23 +184,23 @@ const Navbar = () => {
 
       {/* Extra Group Order Active Banner */}
       {isGroupOrderActive && (
-        <div className="bg-gradient-to-r from-[#1A9C9C] to-[#093636] w-full py-3">
-          <div className="container mx-auto flex items-center justify-between px-6 md:px-0">
-            <div className="flex items-center gap-4 text-white">
+        <div className="bg-gradient-to-r from-[#1A9C9C] to-[#093636] w-full py-3 xl:px-0 px-4">
+          <div className="container mx-auto flex items-center justify-between px-6 md:px-0  gap-2">
+            <div className="flex items-center gap-4 text-white ">
               <div className="flex items-center gap-2">
                 <FiUsers size={20} />
-                <span className="font-medium text-[15px]">You're adding to a group order</span>
+                <span className="font-medium md:text-[15px] text-[10px]">You're adding to a group order</span>
               </div>
               <div className="w-[1px] h-5 bg-[#ffffff]/30"></div>
               <div className="flex items-center gap-2">
-                <span className="text-[14px]">
+                <span className="md:text-[14px] text-[10px]">
                   <span className="inline-block w-1 h-1 bg-white rounded-full mr-1.5 align-middle"></span>
                   3 Participants
                 </span>
               </div>
             </div>
 
-            <button className="bg-[#E9E9E921] hover:bg-[#E9E9E921]/50 transition-colors text-white px-5 py-2 rounded-md flex items-center gap-2 text-[14px] font-medium cursor-pointer
+            <button className="bg-[#E9E9E921] hover:bg-[#E9E9E921]/50 transition-colors text-white px-5 py-2 rounded-md flex items-center gap-2 md:text-[14px] text-[10px] font-medium cursor-pointer
            
             "
               onClick={() => {

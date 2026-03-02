@@ -1,10 +1,10 @@
 
 
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 import { FaHome, FaRegFileAlt, FaUserFriends } from "react-icons/fa";
 import { GrHomeRounded } from "react-icons/gr";
@@ -14,9 +14,11 @@ import { FiSettings, FiUsers, FiChevronDown } from "react-icons/fi";
 export default function DashboardLayout() {
   const [selectedItem, setSelectedItem] = useState("Dashboard");
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const menuItems = [
+
+  const menuItems = useMemo(() => [
     {
       items: [
         { name: "GENERAL" },
@@ -36,9 +38,9 @@ export default function DashboardLayout() {
 
       ],
     },
-  ];
+  ], []);
 
-  
+
   useEffect(() => {
     const currentItem = menuItems[0].items.find(
       (item) => item.path === location.pathname
@@ -46,32 +48,47 @@ export default function DashboardLayout() {
     if (currentItem) {
       setSelectedItem(currentItem.name);
     }
-  }, [location.pathname]);
+  }, [location.pathname, menuItems]);
 
   const handleItemClick = (itemName, path) => {
     setSelectedItem(itemName); // Update the selected item on click
     navigate(path); // Navigate to the clicked item's path
+    setMobileMenuOpen(false); // Close mobile menu after navigation
   };
 
   return (
     <div className="flex h-screen bg-gray-50">
+      {/* Mobile Overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 xl:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        ></div>
+      )}
+
       {/* Sidebar */}
       <aside
-        className={`w-68 bg-white border-r border-gray-200 transition-all duration-500 ease-in-out`}
+        className={`w-68 bg-white border-r border-gray-200 transition-all duration-500 ease-in-out fixed xl:relative h-full xl:h-auto z-40 xl:z-auto ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full xl:translate-x-0'
+          }`}
       >
         {/* Logo */}
         <div className="h-16  flex items-center px-4 ">
-          <div className="flex items-center justify-center w-full ms-1 gap-2 mt-20 ">
-
+          <div className="flex items-center justify-center w-full relative ">
             <Link to="/">
-              <p className='text-3xl lusitana'>Jone’s <span className='text-[#F68528]'>Sheks</span> </p>
+              <p className='text-3xl lusitana mt-10'>Jone's <span className='text-[#F68528]'>Sheks</span> </p>
             </Link>
-
+            {/* Close button for mobile */}
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="xl:hidden p-2 absolute -top-0 -right-4  hover:bg-gray-100 rounded-lg cursor-pointer"
+            >
+              <X size={24} className="text-gray-700" />
+            </button>
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className="p-4 md:mt-20">
+        <nav className="p-4 mt-6 ">
           {menuItems.map((section, idx) => (
             <div key={idx} className="mb-8">
               <ul className="space-y-1">
@@ -92,8 +109,8 @@ export default function DashboardLayout() {
                       <li key={itemIdx}>
                         <div
                           className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors cursor-pointer ${item.children.some(c => selectedItem === c.name) || selectedItem === item.name
-                              ? 'bg-[#E8F7F7] text-[#1A9C9C] font-medium'
-                              : 'text-gray-700 hover:bg-[#1A9C9C]/20'
+                            ? 'bg-[#E8F7F7] text-[#1A9C9C] font-medium'
+                            : 'text-gray-700 hover:bg-[#1A9C9C]/20'
                             }`}
                         >
                           {/* Icon + label navigate to parent path */}
@@ -103,7 +120,7 @@ export default function DashboardLayout() {
                             className="flex items-center gap-3 flex-1"
                           >
                             <span className={`transition-colors duration-300 ${item.children.some(c => selectedItem === c.name) || selectedItem === item.name
-                                ? 'text-[#1A9C9C]' : 'text-gray-500'
+                              ? 'text-[#1A9C9C]' : 'text-gray-500'
                               }`}>{item.icon}</span>
                             <span className="flex-1 whitespace-nowrap">{item.name}</span>
                           </Link>
@@ -129,8 +146,8 @@ export default function DashboardLayout() {
                                   to={child.path}
                                   onClick={() => handleItemClick(child.name, child.path)}
                                   className={`flex items-center gap-2 text-[13px] px-2 py-2 rounded-md transition-colors ${selectedItem === child.name
-                                      ? 'bg-[#1A9C9C] text-white font-medium'
-                                      : 'text-gray-600 hover:bg-[#1A9C9C]/50 hover:text-[#1A9C9C]'
+                                    ? 'bg-[#1A9C9C] text-white font-medium'
+                                    : 'text-gray-600 hover:bg-[#1A9C9C]/50 hover:text-[#1A9C9C]'
                                     }`}
                                 >
                                   {child.icon && (
@@ -177,6 +194,13 @@ export default function DashboardLayout() {
         <header className="h-22 bg-white border-b border-gray-200">
           <div className="h-full px-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
+              {/* Three-dot menu button for mobile */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="xl:hidden p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <Menu size={24} className="text-gray-700" />
+              </button>
 
               <div className="flex flex-col min-w-3xl">
 

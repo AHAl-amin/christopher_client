@@ -89,7 +89,7 @@ function MyAndGroupCart() {
   const finalTotal = currentSubtotal + taxAmount;
 
   return (
-    <div className='py-12 bg-[#B6DDE1]/20 min-h-screen'>
+    <div className='py-12 bg-[#B6DDE1]/20 min-h-screen xl:px-0 px-4'>
       <div className="max-w-7xl mx-auto px-6 lg:px-0">
 
         {/* Toggle Button */}
@@ -113,8 +113,8 @@ function MyAndGroupCart() {
           {/* Main Content Area */}
           <div className="flex-1">
             {activeTab === 'my-cart' ? (
-              <div className="bg-white rounded-[20px] p-8 shadow-sm w-full font-sans">
-                <div className="grid grid-cols-12 text-[#62748E] font-medium text-[15px] border-b border-dashed border-gray-200 pb-4 mb-6">
+              <div className="bg-white rounded-[20px] p-8 shadow-sm w-full font-sans overflow-x-auto">
+                <div className="grid grid-cols-12 text-[#62748E] font-medium text-[15px] border-b border-dashed border-gray-200 pb-4 mb-6 min-w-xl">
                   <div className="col-span-6">Product</div>
                   <div className="col-span-2 text-center">Price</div>
                   <div className="col-span-2 text-center">Quantity</div>
@@ -122,7 +122,7 @@ function MyAndGroupCart() {
                 </div>
 
                 {myCartItems.map(item => (
-                  <div key={item.id} className="grid grid-cols-12 items-center mb-6">
+                  <div key={item.id} className="grid grid-cols-12 items-center mb-6 min-w-xl">
                     <div className="col-span-6 flex items-center gap-4">
                       <img src={item.image} alt={item.name} className="w-[80px] h-[80px] object-cover rounded-lg bg-[#F8FBFC] border border-gray-100 p-2 mix-blend-multiply" />
                       <div>
@@ -169,8 +169,8 @@ function MyAndGroupCart() {
                       </div>
                       <span className="bg-white px-4 py-1.5 rounded-full text-[#62748E] text-[13px] font-medium shadow-sm">{getGroupItemCount(group)} Items</span>
                     </div>
-                    <div className="p-6">
-                      <div className="grid grid-cols-12 text-[#62748E] font-medium text-[14px] border-b border-dashed border-gray-200 pb-3 mb-5">
+                    <div className="p-6 overflow-x-auto">
+                      <div className="grid grid-cols-12 text-[#62748E] font-medium text-[14px] border-b border-dashed border-gray-200 pb-3 mb-5 min-w-xl">
                         <div className="col-span-6">Product</div>
                         <div className="col-span-2 text-center">Price</div>
                         <div className="col-span-2 text-center">Quantity</div>
@@ -178,7 +178,7 @@ function MyAndGroupCart() {
                       </div>
 
                       {group.items.map((item, itemIndex) => (
-                        <div key={itemIndex} className={`grid grid-cols-12 items-center ${itemIndex !== group.items.length - 1 ? 'mb-6' : ''}`}>
+                        <div key={itemIndex} className={`grid grid-cols-12 items-center min-w-xl ${itemIndex !== group.items.length - 1 ? 'mb-6' : ''}`}>
                           <div className="col-span-6 flex items-center gap-4">
                             <img src={item.image} alt={item.name} className="w-[65px] h-[65px] object-cover rounded-lg bg-[#F8FBFC] border border-gray-100 p-1.5 mix-blend-multiply" />
                             <div>
@@ -262,11 +262,11 @@ function MyAndGroupCart() {
               </div>
 
               <div className="flex gap-3">
-                <button className="flex-1 bg-white border border-[#1A9C9C] text-[#1A9C9C] h-[46px] rounded-md font-medium flex items-center justify-center gap-2 hover:bg-teal-50 transition-colors text-[13px] cursor-pointer">
+                <button className="flex-1 bg-white border border-[#1A9C9C] text-[#1A9C9C] h-[46px] rounded-md font-medium flex items-center justify-center gap-2 hover:bg-teal-50 transition-colors md:text-[13px] text-[10px] cursor-pointer">
                   Add More Items <FiShoppingBag size={15} />
                 </button>
-                <button className="flex-1 bg-[#1A9C9C] text-white h-[46px] rounded-md font-medium flex items-center justify-center gap-2 hover:bg-teal-700 transition-colors text-[13px] cursor-pointer"
-                onClick={() => navigate('/choose_delivery_method')}
+                <button className="flex-1 bg-[#1A9C9C] text-white h-[46px] rounded-md font-medium flex items-center justify-center gap-2 hover:bg-teal-700 transition-colors md:text-[13px] text-[10px] cursor-pointer"
+                  onClick={() => navigate('/choose_delivery_method')}
                 >
                   Proceed to Checkout <CiMoneyCheck1 size={20} />
                 </button>

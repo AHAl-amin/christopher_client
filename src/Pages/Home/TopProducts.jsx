@@ -178,7 +178,7 @@ function TopProducts() {
     return (
         <div className="container mx-auto  py-16 pb-6 xl:px-0 px-4">
             {/* Header Section */}
-            <div className="flex justify-between md:flex-row flex-col mb-12 border-b border-dashed border-[#CAD5E2] ">
+            <div className="flex justify-between md:flex-row flex-col mb-12 border-b border-dashed border-[#CAD5E2] pb-4 ">
                 <h1 className="lusitana text-4xl font-medium text-[#221E1F] md:mb-0 mb-6">Top Products</h1>
 
                 {/* Search and Filter */}
