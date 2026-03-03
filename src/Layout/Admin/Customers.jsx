@@ -55,9 +55,9 @@ export default function Customers() {
 
             <div className="bg-white rounded-2xl p-6 shadow-sm ml-6">
                 {/* Controls */}
-                <div className="flex items-center justify-between mb-5">
+                <div className="flex items-center justify-between mb-5 gap-4">
                     {/* Search */}
-                    <div className="relative min-w-xl">
+                    <div className="relative lg:min-w-xl w-full">
                         <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF]" size={16} />
                         <input
                             type="text"
@@ -75,8 +75,8 @@ export default function Customers() {
                 </div>
 
                 {/* Table */}
-                <div className="border border-[#F0F0F0] rounded-xl overflow-hidden">
-                    <table className="w-full text-[13px]">
+                <div className="border border-[#F0F0F0] overflow-x-auto  rounded-xl overflow-hidden">
+                    <table className="w-full text-[13px] ">
                         <thead className="bg-[#F9FAFB] border-b border-[#F0F0F0]">
                             <tr className="text-[#64748B] font-semibold">
                                 <th className="py-3.5 px-4 text-left w-12">
@@ -142,7 +142,7 @@ export default function Customers() {
                     </table>
 
                     {/* Pagination */}
-                    <div className="flex items-center justify-between px-5 py-4 border-t border-[#F0F0F0] text-[13px] text-[#64748B] bg-white">
+                    <div className="flex items-center min-w-md justify-between px-5 py-4 border-t border-[#F0F0F0] text-[13px] text-[#64748B] bg-white">
                         <span className="font-medium text-[#1A9C9C]">
                             {filtered.length === 0 ? '0' : Math.min((page - 1) * PAGE_SIZE + 1, filtered.length)}
                             <span className="text-[#64748B] font-normal"> - {Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length} Pages</span>

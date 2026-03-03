@@ -192,7 +192,7 @@ export default function DashboardLayout() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Navbar */}
         <header className="h-22 bg-white border-b border-gray-200 ">
-          <div className="h-full px-4 flex items-center justify-between">
+          <div className="h-full md:px-4 flex items-center justify-between  gap-4">
             <div className="flex items-center gap-4">
              
               <button
@@ -207,7 +207,7 @@ export default function DashboardLayout() {
                 <input type="text" placeholder="Search" className="input input-bordered focus:border-[#1A9C9C] focus-within:border-2 focus:outline-none  rounded-md " />
               </div>
             </div>
-            <div className="flex items-center gap-4 me-10">
+            <div className="flex items-center gap-4 me-10  ">
 
               <div className="flex items-center justify-center gap-2">
                 <div className="w-12">
@@ -247,7 +247,7 @@ export default function DashboardLayout() {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-auto p-12 bg-[#F5F5F6]">
+        <main className="flex-1 overflow-auto md:p-12 p-5  bg-[#F5F5F6]">
           <Outlet />
         </main>
       </div>

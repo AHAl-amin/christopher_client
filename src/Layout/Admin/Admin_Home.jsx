@@ -97,7 +97,7 @@ const Admin_Home = () => {
   };
 
   return (
-    <div className=" min-h-screen">
+    <div className=" min-h-screen ">
       <h1 className="luxury text-[30px] font-semibold text-[#221E1F] mb-6">Dashboard</h1>
 
       <div className='flex w-full lg:flex-row flex-col-reverse  justify-between gap-10'>

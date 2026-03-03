@@ -222,9 +222,9 @@ export default function Orders() {
             </div>
 
             {/* Controls */}
-            <div className="flex items-center justify-between mb-5 gap-4 pl-4 ">
+            <div className="flex items-center md:flex-row flex-col justify-between mb-5 gap-4 pl-4 w-full ">
                 {/* Search */}
-                <div className="relative flex-1 max-w-lg ">
+                <div className="relative flex-1 md:min-w-md w-full">
                     <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF] " size={16} />
                     <input
                         type="text"
@@ -234,12 +234,12 @@ export default function Orders() {
                         className="w-full border border-[#B0B0B0] rounded-lg pl-9 pr-4 py-2.5 text-[13px] text-[#334155] placeholder:text-[#C5D0DC] focus:outline-none focus:ring-1 focus:ring-[#1A9C9C]"
                     />
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex md:flex-row flex-col items-center gap-3   w-full">
                     {/* Filter Button + Dropdown */}
-                    <div className="relative" ref={filterRef}>
+                    <div className="relative w-full" ref={filterRef}>
                         <button
                             onClick={() => setFilterOpen(prev => !prev)}
-                            className={`flex items-center gap-2 border text-[13px] font-medium px-4 py-2.5 rounded-lg cursor-pointer transition-colors ${activeFilters.length > 0
+                            className={`w-full  flex items-center gap-2 border  text-[13px] font-medium px-4 py-2.5 rounded-lg cursor-pointer transition-colors ${activeFilters.length > 0
                                     ? 'border-[#1A9C9C] bg-[#F0FAFA] text-[#1A9C9C]'
                                     : 'border-[#B0B0B0] text-[#334155] hover:bg-gray-50'
                                 }`}
@@ -304,14 +304,14 @@ export default function Orders() {
                         )}
                     </div>
 
-                    <button className="flex items-center gap-2 border border-[#B0B0B0] text-[#334155] text-[13px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <button className="w-full flex items-center gap-2 border border-[#B0B0B0] text-[#334155] text-[13px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <FiDownload size={15} /> Export
                     </button>
                 </div>
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-[#F0F0F0] shadow-sm overflow-hidden ml-4">
+            <div className="bg-white rounded-xl border overflow-x-auto border-[#F0F0F0] shadow-sm overflow-hidden ml-4">
                 <table className="w-full text-[13px]">
                     <thead className="border-b border-[#F0F0F0] bg-[#F6F6F6]">
                         <tr className="text-[#454545] font-semibold">

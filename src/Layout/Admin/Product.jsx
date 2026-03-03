@@ -102,7 +102,7 @@ const EditModal = ({ product, onClose, onSave, isNew }) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
             <div className="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-y-auto no-scrollbar max-h-[90vh]">
-                <div className="p-6">
+                <div className="p-6 ">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                         <h2 className="text-xl font-bold text-[#221E1F] lusitana">
@@ -328,12 +328,12 @@ export default function Product() {
     return (
         <div className="bg-[#F3F3F3] ">
             {/* Title */}
-            <div className="mb-6 flex items-start justify-between">
+            <div className="mb-6 flex md:items-start justify-between">
                 <div>
-                    <h1 className="luxury text-[36px] font-semibold text-[#221E1F]">Product</h1>
-                    <p className="text-[#9CA3AF] text-[14px]">Manage your menu items and offerings</p>
+                    <h1 className="luxury md:text-[36px] text-3xl font-semibold text-[#221E1F]">Product</h1>
+                    <p className="text-[#9CA3AF] md:text-[14px] text-[10px]">Manage your menu items and offerings</p>
                 </div>
-                <button className="text-[#F68528] text-xl  hover:underline cursor-pointer mt-2 underline"
+                <button className="text-[#F68528] md:text-xl  hover:underline cursor-pointer mt-2 underline"
                 onClick={() => navigate('/dashboard/products/manage_add_ons')}
                 >
                     Manage Add - Ons
@@ -342,9 +342,9 @@ export default function Product() {
 
           <div className='border border-[#E7E7E7] rounded-2xl p-6'>
               {/* Controls */}
-            <div className="flex items-center justify-between mb-5 gap-4  ">
+            <div className="flex items-center md:flex-row flex-col justify-between mb-5 gap-4  ">
                 {/* Search */}
-                <div className="relative flex-1 max-w-lg">
+                <div className="relative flex-1 md:max-w-lg w-full">
                     <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF]" size={16} />
                     <input
                         type="text"
@@ -360,7 +360,7 @@ export default function Product() {
                     <div className="relative" ref={filterRef}>
                         <button
                             onClick={() => setFilterOpen(p => !p)}
-                            className={`flex items-center gap-2 border text-[13px] font-medium px-4 py-2.5 rounded-lg cursor-pointer transition-colors ${activeFilters.length > 0
+                            className={`flex items-center gap-2 border md:text-[13px] text-[10px] font-medium px-4 py-2.5 rounded-lg cursor-pointer transition-colors ${activeFilters.length > 0
                                     ? 'border-[#1A9C9C] bg-[#F0FAFA] text-[#1A9C9C]'
                                     : 'border-[#B0B0B0] text-[#334155] hover:bg-gray-50'
                                 }`}
@@ -400,14 +400,14 @@ export default function Product() {
                     </div>
 
                     {/* Export */}
-                    <button className="flex items-center gap-2 border border-[#B0B0B0] text-[#334155] text-[13px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <button className="flex items-center gap-2 border border-[#B0B0B0] text-[#334155] md:text-[13px] text-[10px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <FiDownload size={15} /> Export
                     </button>
 
                     {/* New Product */}
                     <button
                         onClick={() => navigate('/dashboard/products/add_new_product')}
-                        className="flex items-center gap-2 bg-[#1A9C9C] text-white text-[13px] font-semibold px-4 py-2.5 rounded-lg hover:bg-[#158080] cursor-pointer transition-colors"
+                        className="flex items-center gap-2 bg-[#1A9C9C] text-white md:text-[13px] text-[10px] font-semibold px-4 py-2.5 rounded-lg hover:bg-[#158080] cursor-pointer transition-colors"
                     >
                         <FiPlus size={15} /> New Product
                     </button>
@@ -415,7 +415,7 @@ export default function Product() {
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-[#F0F0F0] shadow-sm overflow-hidden">
+            <div className="bg-white rounded-xl border overflow-x-auto  border-[#F0F0F0] shadow-sm overflow-hidden">
                 <table className="w-full text-[13px]">
                     <thead className="border-b border-[#F0F0F0] bg-[#F6F6F6]">
                         <tr className="text-[#454545] font-medium text-sm">

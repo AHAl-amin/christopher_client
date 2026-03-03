@@ -96,10 +96,10 @@ const AddNewProduct = () => {
             </div>
 
             {/* Main Content Layout */}
-            <div className="flex flex-col xl:flex-row gap-8 items-start pb-10">
+            <div className="flex flex-col xl:flex-row gap-8 items-center pb-10">
 
                 {/* Left Column: Image Upload & Preview */}
-                <div className=" flex flex-1 flex-col gap-4   min-h-[66vh]  ">
+                <div className=" flex flex-1 flex-col gap-4 w-[350px] md:w-auto  md:min-h-[66vh] min-h-[50vh]   ">
                     {/* Hidden File Input */}
                     <input
                         type="file"

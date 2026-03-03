@@ -22,7 +22,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className=" sticky top-0 z-50 ">
+    <nav className=" sticky top-0 z-50  ">
       {/* Sidebar Overlay */}
       {sidebarOpen && (
         <div

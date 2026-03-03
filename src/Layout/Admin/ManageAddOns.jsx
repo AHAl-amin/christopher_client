@@ -338,9 +338,9 @@ export default function ManageAddOns() {
 
           <div className='border border-[#E7E7E7] rounded-2xl p-6'>
               {/* Controls */}
-            <div className="flex items-center justify-between mb-5 gap-4  ">
+            <div className="flex items-center md:flex-row flex-col justify-between mb-5 gap-4  ">
                 {/* Search */}
-                <div className="relative flex-1 max-w-lg">
+                <div className="relative flex-1 md:max-w-lg w-full">
                     <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9CA3AF]" size={16} />
                     <input
                         type="text"
@@ -356,7 +356,7 @@ export default function ManageAddOns() {
                     <div className="relative" ref={filterRef}>
                         <button
                             onClick={() => setFilterOpen(p => !p)}
-                            className={`flex items-center gap-2 border text-[13px] font-medium px-4 py-2.5 rounded-lg cursor-pointer transition-colors ${activeFilters.length > 0
+                            className={`flex items-center gap-2 border md:text-[13px] text-[10px] font-medium px-4 py-2.5 rounded-lg cursor-pointer transition-colors ${activeFilters.length > 0
                                     ? 'border-[#1A9C9C] bg-[#F0FAFA] text-[#1A9C9C]'
                                     : 'border-[#B0B0B0] text-[#334155] hover:bg-gray-50'
                                 }`}
@@ -369,7 +369,7 @@ export default function ManageAddOns() {
                             )}
                         </button>
                         {filterOpen && (
-                            <div className="absolute right-0 mt-2 w-44 bg-white border border-[#E8E8E8] rounded-xl shadow-lg z-30 overflow-hidden">
+                            <div className="absolute right-0 mt-2 md:w-44 w-30 bg-white border border-[#E8E8E8] rounded-xl shadow-lg z-30 overflow-hidden">
                                 <div className="px-3 py-2.5 border-b border-[#F0F0F0] flex items-center justify-between">
                                     <span className="text-[12px] font-semibold text-[#334155]">Filter by Status</span>
                                     {activeFilters.length > 0 && (
@@ -396,14 +396,14 @@ export default function ManageAddOns() {
                     </div>
 
                     {/* Export */}
-                    <button className="flex items-center gap-2 border border-[#B0B0B0] text-[#334155] text-[13px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <button className="flex items-center gap-2 border border-[#B0B0B0] text-[#334155] md:text-[13px] text-[10px] font-medium px-4 py-2.5 rounded-lg hover:bg-gray-50 cursor-pointer">
                         <FiDownload size={15} /> Export
                     </button>
 
                     {/* New Product */}
                     <button
                         onClick={() => navigate('/dashboard/products/add_ons')}
-                        className="flex items-center gap-2 bg-[#1A9C9C] text-white text-[13px] font-semibold px-4 py-2.5 rounded-lg hover:bg-[#158080] cursor-pointer transition-colors"
+                        className="flex items-center gap-2 bg-[#1A9C9C] text-white md:text-[13px] text-[10px] font-semibold px-4 py-2.5 rounded-lg hover:bg-[#158080] cursor-pointer transition-colors"
                     >
                         <FiPlus size={15} /> New Add Ons
                     </button>
@@ -411,7 +411,7 @@ export default function ManageAddOns() {
             </div>
 
             {/* Table */}
-            <div className="bg-white rounded-xl border border-[#F0F0F0] shadow-sm overflow-hidden">
+            <div className="bg-white rounded-xl border overflow-x-auto border-[#F0F0F0] shadow-sm overflow-hidden">
                 <table className="w-full text-[13px]">
                     <thead className="border-b border-[#F0F0F0] bg-[#F6F6F6]">
                         <tr className="text-[#454545] font-medium text-sm">
