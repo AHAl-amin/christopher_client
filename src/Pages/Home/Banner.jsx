@@ -2,10 +2,13 @@ import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { FiUsers } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
+import { useGroupOrder } from '../../Context/GroupOrderContext'
 
 function Banner() {
 
   const navigate = useNavigate()
+  const { openStartGroupOrderModal } = useGroupOrder()
+  
   return (
     <div className="bg-[url('https://res.cloudinary.com/dcpbtzues/image/upload/v1771402932/Frame_2147226546_vmqghx.png')] bg-cover bg-center bg-no-repeat  p-12 md:p-16 mx-auto h-[88vh]"
     >
@@ -23,7 +26,9 @@ function Banner() {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="buton py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+              <button 
+                onClick={openStartGroupOrderModal}
+                className="buton py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
                 Start Group Order<FiUsers />
               </button>
 
@@ -45,4 +50,3 @@ function Banner() {
 }
 
 export default Banner
-

@@ -1,8 +1,11 @@
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import { FiUsers } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 
 function AboutBanner() {
+
+  const Navigate = useNavigate()
   return (
   <div       className="bg-[url('https://res.cloudinary.com/dcpbtzues/image/upload/v1771483299/Frame_2147226552_x5lbaa.png')] bg-cover bg-center bg-no-repeat  mx-auto md:h-[88vh] h-[50vh]"
 >
@@ -22,7 +25,9 @@ function AboutBanner() {
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
            
 
-            <button className="buton cursor-pointer text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+            <button className="buton cursor-pointer text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2"
+            onClick={() =>Navigate('/menu')}
+            >
               Explore Menu
               <ArrowRight size={20} />
             </button>

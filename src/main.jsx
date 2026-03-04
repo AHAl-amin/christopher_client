@@ -9,11 +9,20 @@ import {
 import { router } from './routes/routes.jsx';
 import { store } from './redux/sotre.js';
 import { Provider } from 'react-redux';
+import { GroupOrderProvider } from './Context/GroupOrderContext.jsx';
+import { CartProvider } from './Context/CartContext.jsx';
+import { BucketProvider } from './Context/BucketContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store = {store}>
-       <RouterProvider router={router} />  
+      <GroupOrderProvider>
+        <CartProvider>
+          <BucketProvider>
+            <RouterProvider router={router} />  
+          </BucketProvider>
+        </CartProvider>
+      </GroupOrderProvider>
     </Provider>
     </StrictMode>,
 )

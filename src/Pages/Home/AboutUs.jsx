@@ -58,10 +58,7 @@ function AboutUs() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                        <button className="buton   text-white font-semibold md:w-[40%] w-full rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 inline-flex items-center justify-center gap-2">
-                            Order Now
-                            <ShoppingBag size={20} />
-                        </button>
+                  
 
                         <Link 
                         to="/menu"

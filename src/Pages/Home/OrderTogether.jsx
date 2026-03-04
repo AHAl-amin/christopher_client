@@ -1,8 +1,11 @@
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import { FiUsers } from 'react-icons/fi'
+import { useGroupOrder } from '../../Context/GroupOrderContext'
 
 function OrderTogether() {
+  const { openStartGroupOrderModal } = useGroupOrder()
+  
   return (
    <div className='bg-[#FFFFFF] lg:py-20 py-10'>
       <div       className="bg-[url('https://res.cloudinary.com/dcpbtzues/image/upload/v1771408034/Frame_2147226583_hcffrm.png')] bg-cover bg-center bg-no-repeat  p-12 md:p-16 mx-auto h-[85vh]"
@@ -21,7 +24,9 @@ function OrderTogether() {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="buton py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+            <button 
+              onClick={openStartGroupOrderModal}
+              className="buton py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
                 Start Group Order<FiUsers />
             </button>
 

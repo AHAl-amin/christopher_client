@@ -11,12 +11,17 @@ import product6 from '../../../public/img/Products/product6.png'
 import product7 from '../../../public/img/Products/product7.png'
 import product8 from '../../../public/img/Products/product8.png'
 import { IoMdHeartEmpty } from 'react-icons/io'
+import { FaHeart } from 'react-icons/fa'
 import { IoChevronForwardOutline } from 'react-icons/io5'
+import { useCart } from '../../Context/CartContext'
+import { useBucket } from '../../Context/BucketContext'
 
 
 function MenuProduct() {
 
     const navigate = useNavigate()
+    const { addToCart } = useCart()
+    const { addToBucket, removeFromBucket, isBucketItem } = useBucket()
 
 
 
@@ -314,12 +319,26 @@ function MenuProduct() {
 
                                     <div className="absolute inset-0 flex items-center justify-center h-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <div className='flex justify-center gap-2 items-center'>
-                                            <button className="w-12 h-12 bg-teal-500 hover:bg-teal-600 rounded-full flex items-center justify-center text-white font-bold transition-colors">
+                                            <button 
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    addToCart(product)
+                                                }}
+                                                className="w-12 h-12 bg-teal-500 hover:bg-teal-600 rounded-full flex items-center justify-center text-white font-bold transition-colors">
                                                 <ShoppingBag size={18} />
                                             </button>
 
-                                            <button className="w-12 h-12 bg-orange-500 hover:bg-orange-600 rounded-full flex items-center justify-center text-white font-bold transition-colors">
-                                                <IoMdHeartEmpty size={18} />
+                                            <button 
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    if (isBucketItem(product.id)) {
+                                                        removeFromBucket(product.id)
+                                                    } else {
+                                                        addToBucket(product)
+                                                    }
+                                                }}
+                                                className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold transition-colors ${isBucketItem(product.id) ? 'bg-red-500 hover:bg-red-600' : 'bg-orange-500 hover:bg-orange-600'}`}>
+                                                {isBucketItem(product.id) ? <FaHeart size={18} /> : <IoMdHeartEmpty size={18} />}
                                             </button>
                                         </div>
                                     </div>

@@ -1,9 +1,11 @@
 import React from 'react'
 import { FiUsers } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
+import { useGroupOrder } from '../../Context/GroupOrderContext'
 
 function AboutOrderTogether() {
     const navigate = useNavigate()
+    const { openStartGroupOrderModal } = useGroupOrder()
 
     return (
         <div className=''>
@@ -23,7 +25,9 @@ function AboutOrderTogether() {
         
                   {/* Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <button className="buton py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <button 
+                      onClick={openStartGroupOrderModal}
+                      className="buton py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
                         Start Group Order<FiUsers />
                     </button>
         

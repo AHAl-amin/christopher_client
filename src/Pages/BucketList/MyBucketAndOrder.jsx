@@ -10,11 +10,14 @@ import product6 from '../../../public/img/Products/product6.png'
 import product7 from '../../../public/img/Products/product7.png'
 import product8 from '../../../public/img/Products/product8.png'
 import { IoMdHeartEmpty } from 'react-icons/io'
+import { FaHeart } from 'react-icons/fa'
+import { useBucket } from '../../Context/BucketContext'
 
 
 function MyBucketAndOrder() {
     const [activeTab, setActiveTab] = useState('All');
     const [orderedItems, setOrderedItems] = useState([2, 5, 6, 9]); // Setting initial mock ordered items to match images
+    const { removeFromBucket } = useBucket()
 
     // Helper toggle function
     const toggleOrdered = (productId) => {
@@ -200,8 +203,10 @@ function MyBucketAndOrder() {
 
 
 
-                                <button className="absolute top-4 right-4 w-9 h-9 bg-[#F68528] hover:bg-orange-600 rounded-full flex items-center justify-center text-white font-bold transition-colors z-10">
-                                    <IoMdHeartEmpty size={18} />
+                                <button 
+                                    onClick={() => removeFromBucket(product.id)}
+                                    className="absolute top-4 right-4 w-9 h-9 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white font-bold transition-colors z-10">
+                                    <FaHeart size={18} />
                                 </button>
 
 

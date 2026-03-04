@@ -1,8 +1,24 @@
 import React from 'react'
 import { ShoppingBag } from 'lucide-react'
 import discountCardsData from '../../data/discountCards.json'
+import { useCart } from '../../Context/CartContext'
 
 function DiscountCard() {
+    const { addToCart } = useCart()
+
+    const handleAddToCart = (card) => {
+        const product = {
+            id: card.id,
+            name: card.name,
+            description: card.category,
+            price: parseFloat(card.price.replace('$', '')),
+            image: card.image,
+            category: card.category,
+            type: 'discount',
+            badges: []
+        }
+        addToCart(product)
+    }
     return (
         <div className="bg-[#1B1B1B] px-4 py-16">
             <div className="max-w-7xl mx-auto">
@@ -43,7 +59,9 @@ function DiscountCard() {
                                     </div>
 
                                     {/* Order Button */}
-                                    <button className="buton hover:bg-teal-700 text-white  py-2 px-6 rounded-lg inline-flex items-center gap-2 transition-all duration-300 transform hover:scale-105 w-fit">
+                                    <button 
+                                        onClick={() => handleAddToCart(card)}
+                                        className="buton hover:bg-teal-700 text-white  py-2 px-6 rounded-lg inline-flex items-center gap-2 transition-all duration-300 transform hover:scale-105 w-fit">
                                         Order Now
                                         <ShoppingBag size={18} />
                                     </button>
